@@ -26,31 +26,36 @@ main {
 #grid {
   height: 1100px;
   width: 1100px;
-  border: 1px solid aquamarine;
+  border: 3px solid aquamarine;
   /* gap: 8px; */
 }
 
 .box {
   width: calc(100% / 10);
   height: calc(100% / 10);
-  border: 2px solid gray;
+  border: 1px solid gray;
   line-height: 110px;
 }
 
 .box-medium {
   width: calc(100% / 9);
   height: calc(100% / 9);
-  border: 2px solid gray;
+  border: 1px solid gray;
   line-height: 125px;
 }
 .box-hard {
   width: calc(100% / 7);
   height: calc(100% / 7);
-  border: 2px solid gray;
+  border: 1px solid gray;
   line-height: 150px;
 }
+
 .active {
   background-color: lightblue;
+}
+
+.bomb {
+  background-color: red;
 }
 /* FOOTER */
 footer {
