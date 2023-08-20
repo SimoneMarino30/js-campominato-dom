@@ -12,6 +12,9 @@ const quantity = 16;
 let arrUniqueNumbers = [];
 // Bottone reset
 const resetEl = document.getElementById("reset");
+// Modal
+const modal = document.getElementById("modal");
+const modalBtn = document.getElementById("modal-button");
 
 // EVENT LISTENER
 
@@ -59,8 +62,12 @@ buttonEl.addEventListener("click", function () {
       // Ciclo per colorare le caselle delle bombe di rosso
       for (let x = 0; x < arrUniqueNumbers.length; x++) {
         if (i == arrUniqueNumbers[x]) {
-          console.log("Hai perso, che scaaaaarso ahahahahaha");
           explode(square);
+          gridEl.classList.add("d-none");
+          modal.classList.remove("d-none");
+          modal.classList.add("d-block");
+          // alert("Hai perso, che scaaaaarso ahahahahaha");
+          // window.location.reload();
         }
       }
     });
@@ -79,3 +86,8 @@ function changeBackground(singleSquare) {
 function explode(bomb) {
   bomb.style.backgroundColor = "red";
 }
+
+modalBtn.addEventListener("click", function () {
+  modal.classList.remove("d-block");
+  modal.classList.add("d-none");
+});
