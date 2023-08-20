@@ -1,121 +1,81 @@
-// CONSEGNA DAY 1
 // L'utente clicca su un bottone che genererà una griglia di gioco quadrata.
-// Ogni cella ha un numero progressivo, da 1 a 100.
-// Ci saranno quindi 10 caselle per ognuna delle 10 righe.
-// Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro ed emetto un messaggio in console con il numero della cella cliccata.
 
-// Consigli del giorno
-// Scriviamo prima cosa vogliamo fare passo passo in italiano, dividiamo il lavoro in micro problemi.
-// Ad esempio
-// Di cosa ho bisogno per generare i numeri?
-// Proviamo sempre prima con dei console.log() per capire se stiamo ricevendo i dati giusti.
-// Le validazioni e i controlli possiamo farli anche in un secondo momento.
+// COSTANTI
 
-// clicco sul bottone
-// genero una griglia di box(10x10)
-// genero dei numeri progressivi all'interno da 1 a 100
-// clicco sulla cella
-// la cella si colora di azzurro
-// console.log del numero di cellla cliccata
+// Prendo il bottone
+const buttonEl = document.getElementById("button");
+// Prendo la select
+const selectEl = document.getElementById("complexity");
+// Bombs
+const quantity = 16;
+// Array for unique numbers
+let arrUniqueNumbers = [];
+// Bottone reset
+const resetEl = document.getElementById("reset");
 
-// CONSEGNA DAY 2
-// Copiamo la griglia fatta ieri nella nuova repo e aggiungiamo la logica del gioco
-// Il computer deve generare 16 numeri casuali nello stesso range della difficoltà prescelta: le bombe. Attenzione: nella stessa cella può essere posizionata al massimo una bomba, perciò nell'array delle bombe non potranno esserci due numeri uguali.
-// In seguito l'utente clicca su una cella: se il numero è presente nella lista dei numeri generati - abbiamo calpestato una bomba - la cella si colora di rosso e la partita termina. Altrimenti la cella cliccata si colora di azzurro e l'utente può continuare a cliccare sulle altre celle.
-// La partita termina quando il giocatore clicca su una bomba o quando raggiunge il numero massimo possibile di numeri consentiti (ovvero quando ha rivelato tutte le celle che non sono bombe)
+// EVENT LISTENER
 
-/*********************************************************************
- *                                                                   *
- *                        ON LOAD                                    *
- *                                                                   *
- *********************************************************************/
-// BUTTON
-const buttonEl = document.getElementById("myBtn");
-
+// al click genero i quadrati
 buttonEl.addEventListener("click", function () {
+  buttonEl.classList.add("hidden");
+  selectEl.classList.add("hidden");
+  resetEl.classList.remove("hidden");
+
   const gridEl = document.getElementById("grid");
-  const selectEl = document.getElementById("complexity");
-  // SELECT
-  const difficulty = selectEl.value;
-  // console.log(difficulty);
-  // invocazione function grid
-  gridClick(gridEl, difficulty);
+  gridEl.innerHTML = "";
+  // Ciclo che crea array di numeri unici in base alla difficoltà scelta
+  while (arrUniqueNumbers.length < quantity) {
+    const randomNumber = Math.floor(Math.random() * selectEl.value) + 1;
+
+    if (!arrUniqueNumbers.includes(randomNumber)) {
+      arrUniqueNumbers.push(randomNumber);
+    }
+  }
+  console.log(arrUniqueNumbers);
+
+  for (let i = 1; i <= selectEl.value; i++) {
+    const square = document.createElement("button");
+
+    if (selectEl.value == 100) {
+      square.classList.add("box");
+    }
+    if (selectEl.value == 81) {
+      square.classList.add("box-medium");
+    }
+    if (selectEl.value == 49) {
+      square.classList.add("box-hard");
+    }
+
+    // Ogni cella ha un numero progressivo, da 1 a 100.
+    square.innerHTML = i;
+    document.getElementById("grid").appendChild(square);
+
+    // Aggiungo un gestore di eventi al clic di ciascun quadrato
+    square.addEventListener("click", function () {
+      // Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro
+      changeBackground(square);
+      // ed emetto un messaggio in console con il numero della cella cliccata
+      console.log(i);
+      // Ciclo per colorare le caselle delle bombe di rosso
+      for (let x = 0; x < arrUniqueNumbers.length; x++) {
+        if (i == arrUniqueNumbers[x]) {
+          console.log("Hai perso, che scaaaaarso ahahahahaha");
+          explode(square);
+        }
+      }
+    });
+  }
+
+  resetEl.addEventListener("click", function () {
+    window.location.reload();
+  });
 });
 
-/*********************************************************************
- *                                                                   *
- *                        FUNCTIONS                                  *
- *                                                                   *
- *********************************************************************/
-
-function gridClick(grid_El, select_El) {
-  // resetto la griglia
-  grid_El.innerHTML = "";
-
-  let numeroCelle;
-  const arrayNumbers = [];
-
-  if (select_El == 1) {
-    numeroCelle = 100;
-    while (arrayNumbers.length < 16) {
-      randomNumbers = Math.floor(Math.random() * numeroCelle) + 1;
-      if (!arrayNumbers.includes(randomNumbers)) {
-        arrayNumbers.push(randomNumbers);
-      }
-    }
-  } else if (select_El == 2) {
-    numeroCelle = 81;
-    while (arrayNumbers.length < 16) {
-      randomNumbers = Math.floor(Math.random() * numeroCelle) + 1;
-      if (!arrayNumbers.includes(randomNumbers)) {
-        arrayNumbers.push(randomNumbers);
-      }
-    }
-  } else {
-    numeroCelle = 49;
-    while (arrayNumbers.length < 16) {
-      randomNumbers = Math.floor(Math.random() * numeroCelle) + 1;
-      if (!arrayNumbers.includes(randomNumbers)) {
-        arrayNumbers.push(randomNumbers);
-      }
-    }
-  }
-  console.log(arrayNumbers);
-
-  // genero una griglia di box
-  for (let i = 0; i < numeroCelle; i++) {
-    let textNumber = i + 1;
-
-    // creo il div all' interno della griglia
-    const gridBox = document.createElement("div");
-
-    // aggiungo la classe .box
-    gridBox.classList.add("box");
-
-    // aggiungo un addeventlistener per il toggle classe .active (coloro il background)
-    gridBox.addEventListener("click", function () {
-      // aggiungo la classe active
-      this.classList.toggle("active");
-
-      //   stampo un messaggio in console con il numero della cella cliccata.
-      console.log(textNumber);
-      console.log(arrayNumbers);
-    });
-
-    // aggiungo il .box alla griglia
-    grid_El.append(gridBox);
-    // aggiungo il numero progressivo al .box
-    gridBox.append(textNumber);
-
-    if (select_El == 2) {
-      // aggiungo i livelli di difficolta'
-      gridBox.classList.add("box-medium");
-    } else if (select_El == 3) {
-      gridBox.classList.add("box-hard");
-    }
-  }
-
-  //   return alert("Hello World!");
+// FUNCTIONS
+function changeBackground(singleSquare) {
+  singleSquare.style.backgroundColor = "lightskyblue";
 }
 
-// gridBox.append(arraySingleNumber[i]);
+function explode(bomb) {
+  bomb.style.backgroundColor = "red";
+}
