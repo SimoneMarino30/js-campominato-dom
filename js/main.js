@@ -67,7 +67,6 @@ buttonEl.addEventListener("click", function () {
           modal.classList.remove("d-none");
           modal.classList.add("d-block");
           // alert("Hai perso, che scaaaaarso ahahahahaha");
-          // window.location.reload();
         }
       }
     });
@@ -85,9 +84,12 @@ function changeBackground(singleSquare) {
 
 function explode(bomb) {
   bomb.style.backgroundColor = "red";
+  let audio = new Audio("audio/medium-explosion-40472.mp3");
+  audio.play();
 }
 
 modalBtn.addEventListener("click", function () {
   modal.classList.remove("d-block");
   modal.classList.add("d-none");
+  window.location.reload();
 });
