@@ -36,18 +36,21 @@ main {
 .box {
   width: calc(100% / 10);
   height: calc(100% / 10);
-  border: 1px solid blueviolet;
+  background-color: greenyellow;
+  /* border: 1px solid blueviolet; */
 }
 
 .box-medium {
   width: calc(100% / 9);
   height: calc(100% / 9);
-  border: 1px solid goldenrod;
+  background-color: gold;
+  /* border: 1px solid goldenrod; */
 }
 .box-hard {
   width: calc(100% / 7);
   height: calc(100% / 7);
-  border: 1px solid gray;
+  background-color: red;
+  /* border: 1px solid gray; */
 }
 
 .hidden {

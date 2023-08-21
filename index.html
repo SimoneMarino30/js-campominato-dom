@@ -75,26 +75,15 @@ La partita termina quando il giocatore clicca su una bomba o quando raggiunge il
     <!-- HEADER END -->
     <!-- MAIN START -->
     <main>
-      <div id="main-container" class="container">
-        <!-- <div class="row">
-          <div class="col"> -->
+      <div id="main-container" class="container p-5">
         <div id="grid"></div>
-        <!-- </div>
-        </div> -->
       </div>
-      <!-- modal -->
-      <!-- <div id="modal" class="d-none" style="border: 2px solid red">
-        <span>modal</span>
-        <button id="modal-button" class="btn btn-danger d-inline-block">
-          X
-        </button>
-      </div> -->
 
       <div id="modal" class="modal" tabindex="-1">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">BOOOOOOOOOOOM !!!</h5>
+              <h5 class="modal-title">💣</h5>
               <button
                 id="modal-button"
                 type="button"
@@ -103,8 +92,8 @@ La partita termina quando il giocatore clicca su una bomba o quando raggiunge il
                 aria-label="Close"
               ></button>
             </div>
-            <div class="modal-body">
-              <p>You stomp on a bomb.</p>
+            <div class="modal-body d-flex justify-content-center flex-column">
+              <img src="./img/explosion.gif" alt="explosion" />
               <br />
               <p>Please, try again!</p>
             </div>
