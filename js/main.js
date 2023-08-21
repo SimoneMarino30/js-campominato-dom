@@ -13,8 +13,12 @@ let arrUniqueNumbers = [];
 // Bottone reset
 const resetEl = document.getElementById("reset");
 // Modal
-const modal = document.getElementById("modal");
-const modalBtn = document.getElementById("modal-button");
+const modalLose = document.getElementById("modal-lose");
+const modalWin = document.getElementById("modal-win");
+const modalBtnLose = document.getElementById("modal-button-lose");
+const modalBtnWin = document.getElementById("modal-button-win");
+// Punteggio
+let punteggio = 0;
 
 // EVENT LISTENER
 
@@ -34,6 +38,12 @@ buttonEl.addEventListener("click", function () {
       arrUniqueNumbers.push(randomNumber);
     }
   }
+
+  // Ordino i numeri in maniera crescente
+  arrUniqueNumbers.sort(function (a, b) {
+    return a - b;
+  });
+
   console.log(arrUniqueNumbers);
 
   for (let i = 1; i <= selectEl.value; i++) {
@@ -55,17 +65,28 @@ buttonEl.addEventListener("click", function () {
 
     // Aggiungo un gestore di eventi al clic di ciascun quadrato
     square.addEventListener("click", function () {
+      punteggio += 1;
       // Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro
       changeBackground(square);
       // ed emetto un messaggio in console con il numero della cella cliccata
       console.log(i);
-      // Ciclo per colorare le caselle delle bombe di rosso
+
+      if (punteggio == selectEl.value - arrUniqueNumbers.length) {
+        console.log(punteggio);
+        // alert("Hai vinto");
+        gridEl.classList.add("d-none");
+        modalWin.classList.remove("d-none");
+        modalWin.classList.add("d-block");
+      }
+
+      console.log(punteggio);
+      // Ciclo per colorare le caselle delle bombe di rosso (sconfitta)
       for (let x = 0; x < arrUniqueNumbers.length; x++) {
         if (i == arrUniqueNumbers[x]) {
           explode(square);
           gridEl.classList.add("d-none");
-          modal.classList.remove("d-none");
-          modal.classList.add("d-block");
+          modalLose.classList.remove("d-none");
+          modalLose.classList.add("d-block");
           // alert("Hai perso, che scaaaaarso ahahahahaha");
         }
       }
@@ -79,7 +100,7 @@ buttonEl.addEventListener("click", function () {
 
 // FUNCTIONS
 function changeBackground(singleSquare) {
-  singleSquare.style.backgroundColor = "lightskyblue";
+  singleSquare.style.backgroundColor = "#46793d";
 }
 
 function explode(bomb) {
@@ -88,8 +109,14 @@ function explode(bomb) {
   audio.play();
 }
 
-modalBtn.addEventListener("click", function () {
-  modal.classList.remove("d-block");
-  modal.classList.add("d-none");
+modalBtnLose.addEventListener("click", function () {
+  modalLose.classList.remove("d-block");
+  modalLose.classList.add("d-none");
+  window.location.reload();
+});
+
+modalBtnWin.addEventListener("click", function () {
+  modalWin.classList.remove("d-block");
+  modalWin.classList.add("d-none");
   window.location.reload();
 });

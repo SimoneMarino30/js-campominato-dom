@@ -52,7 +52,7 @@ La partita termina quando il giocatore clicca su una bomba o quando raggiunge il
     <header class="container-fluid">
       <div class="row">
         <div class="col d-flex flex-row">
-          <h1 class="title">Campo Minato</h1>
+          <h1 class="title">Campo Minato 💣</h1>
         </div>
         <div class="col col-4">
           <select name="complexity" id="complexity">
@@ -60,12 +60,15 @@ La partita termina quando il giocatore clicca su una bomba o quando raggiunge il
             <option value="81">Medium</option>
             <option value="49">Hard</option>
           </select>
-          <button id="button" class="custom-btn col-4 my-btn btn-secondary">
+          <button
+            id="button"
+            class="btn btn-success custom-btn col-4 my-btn btn-secondary"
+          >
             Play
           </button>
           <button
             id="reset"
-            class="custom-btn col-4 my-btn btn-secondary hidden"
+            class="btn btn-warning custom-btn col-4 my-btn btn-secondary hidden"
           >
             Reset
           </button>
@@ -78,14 +81,14 @@ La partita termina quando il giocatore clicca su una bomba o quando raggiunge il
       <div id="main-container" class="container p-5">
         <div id="grid"></div>
       </div>
-
-      <div id="modal" class="modal" tabindex="-1">
+      <!-- Modal lose -->
+      <div id="modal-lose" class="modal" tabindex="-1">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">💣</h5>
+              <h5 class="modal-title">💣💣💣💣💣💣💣💣💣💣💣💣💣💣💣💣</h5>
               <button
-                id="modal-button"
+                id="modal-button-lose"
                 type="button"
                 class="btn-close"
                 data-bs-dismiss="modal"
@@ -96,6 +99,28 @@ La partita termina quando il giocatore clicca su una bomba o quando raggiunge il
               <img src="./img/explosion.gif" alt="explosion" />
               <br />
               <p>Please, try again!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Modal win -->
+      <div id="modal-win" class="modal" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Peace ☮</h5>
+              <button
+                id="modal-button-win"
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body d-flex justify-content-center flex-column">
+              <img src="./img/win.gif" alt="explosion" />
+              <br />
+              <p>You win!!</p>
             </div>
           </div>
         </div>
