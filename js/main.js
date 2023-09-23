@@ -29,6 +29,7 @@ buttonEl.addEventListener("click", function () {
   resetEl.classList.remove("hidden");
 
   const gridEl = document.getElementById("grid");
+  gridEl.classList.add("outer-grid-border");
   gridEl.innerHTML = "";
   // Ciclo che crea array di numeri unici in base alla difficoltà scelta
   while (arrUniqueNumbers.length < quantity) {
@@ -100,7 +101,8 @@ buttonEl.addEventListener("click", function () {
 
 // FUNCTIONS
 function changeBackground(singleSquare) {
-  singleSquare.style.backgroundColor = "#46793d";
+  singleSquare.style.backgroundImage = "url(../img/grass.jpg)";
+  singleSquare.style.backgroundSize = "750px 750px";
 }
 
 function explode(bomb) {
