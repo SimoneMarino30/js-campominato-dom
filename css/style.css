@@ -77,6 +77,14 @@ main {
 .outer-grid-border {
   border: 1px solid black;
 }
+/* BTN INSTRUCTIONS */
+#btn-instructions {
+  width: 50px;
+  margin-left: auto;
+  margin-right: 20px;
+  font-size: 13px;
+  background-color: goldenrod;
+}
 
 /* CUSTOM SIDE BAR */
 :root {

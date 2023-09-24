@@ -86,8 +86,7 @@ La partita termina quando il giocatore clicca su una bomba o quando raggiunge il
           <i class="fas fa-gear"></i><span>Instructions</span>
           <!-- Button trigger modal -->
           <button
-            type="button"
-            class="btn btn-primary"
+            id="btn-instructions"
             data-bs-toggle="modal"
             data-bs-target="#exampleModal"
           >
@@ -97,11 +96,15 @@ La partita termina quando il giocatore clicca su una bomba o quando raggiunge il
         <div id="nav-content-highlight"></div>
         <div
           id="nav-footer-content"
-          class="m-auto"
+          class="m-auto d-flex justify-content-center"
           style="border: 1px solid yellow"
         >
           <button id="button" class="custom-btn my-btn btn-secondary">
-            <img src="./img/launch-btn.avif" alt="launch" class="img-fluid" />
+            <img
+              src="./img/launch-btn.avif"
+              alt="launch"
+              class="img-fluid text-center"
+            />
           </button>
           <button
             id="reset"
