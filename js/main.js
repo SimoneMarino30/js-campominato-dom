@@ -17,6 +17,12 @@ const modalLose = document.getElementById("modal-lose");
 const modalWin = document.getElementById("modal-win");
 const modalBtnLose = document.getElementById("modal-button-lose");
 const modalBtnWin = document.getElementById("modal-button-win");
+// Instructions
+// const modalBtnInstructions = document.getElementById(
+//   "modal-button-instructions"
+// );
+// const modalInstructions = document.getElementById("modal-instructions");
+
 // Punteggio
 let punteggio = 0;
 

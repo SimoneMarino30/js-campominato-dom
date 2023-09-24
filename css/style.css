@@ -435,3 +435,10 @@ label[for="nav-footer-toggle"] {
   border-radius: 99px;
   background-color: #d62929;
 }
+
+/* INSTRUCTIONS */
+#more {
+  display: none;
+  font-size: 10px;
+  text-align: left;
+}
