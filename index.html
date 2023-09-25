@@ -57,26 +57,20 @@ La partita termina quando il giocatore clicca su una bomba o quando raggiunge il
     <title>Campo Minato DOM</title>
   </head>
   <body>
-    <div id="nav-bar" style="border: 0px solid purple">
+    <div id="nav-bar">
       <input id="nav-toggle" type="checkbox" />
       <div id="nav-header">
         <div id="nav-title">
-          <img src="./img/gaming-logo.png" alt="" />
+          <img src="./img/gaming-logo.png" alt="mineDOM" />
         </div>
         <label for="nav-toggle"><span id="nav-toggle-burger"></span></label>
         <hr />
       </div>
-      <div
-        id="nav-content"
-        class="d-flex flex-column"
-        style="border: 5px solid yellowgreen"
-      >
-        <!--  -->
-        <div
-          id="nav-footer-content"
-          class="text-center"
-          style="border: 0px solid yellow"
-        >
+      <div id="nav-content" class="d-flex flex-column">
+        <!-- style="border: 5px solid yellowgreen" -->
+
+        <!-- LAUNCH BUTTON -->
+        <div id="nav-footer-content" class="text-center">
           <button id="button" class="custom-btn my-btn btn-secondary">
             <img
               src="./img/launch-btn.avif"
@@ -91,13 +85,13 @@ La partita termina quando il giocatore clicca su una bomba o quando raggiunge il
             Reset
           </button>
         </div>
-        <!--  -->
+        <!-- SIDEBAR ITEMS -->
         <div class="nav-button">
           <i class="fas fa-palette"></i><span>Difficulty</span>
           <select name="complexity" id="complexity">
-            <option value="100">Easy</option>
-            <option value="81">Medium</option>
-            <option value="49">Hard</option>
+            <option value="100" class="easy">Easy</option>
+            <option value="81" class="medium">Medium</option>
+            <option value="49" class="hard">Hard</option>
           </select>
         </div>
         <div class="nav-button">
@@ -121,7 +115,7 @@ La partita termina quando il giocatore clicca su una bomba o quando raggiunge il
         <!-- <div id="nav-content-highlight"></div> -->
       </div>
     </div>
-    <!-- HEADER END -->
+
     <!-- MAIN START -->
     <main>
       <!-- Modal Instructions by BootStrap-->
@@ -134,12 +128,14 @@ La partita termina quando il giocatore clicca su una bomba o quando raggiunge il
       >
         <div class="modal-dialog modal-dialog-scrollable">
           <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">
-                Welcome to MineDOM, a challenging and exciting game of strategy
-                and luck! In MineDOM, your mission is to clear a grid filled
-                with hidden mines while avoiding them. Let's get started!
-              </h1>
+            <div class="modal-header my-custom-modal">
+              <h3 class="modal-title fs-5" id="modal-text">
+                Welcome to
+                <img src="./img/gaming-logo.png" class="mb-2" alt="mineDOM" /></br>
+                a challenging and exciting game of strategy and luck! In
+                MineDOM, your mission is to clear a grid filled with hidden
+                mines while avoiding them. Let's get started!
+              </h3>
             </div>
             <div class="modal-body">
               <h4>Objective:</h4>
@@ -220,10 +216,11 @@ La partita termina quando il giocatore clicca su una bomba o quando raggiunge il
                 luck, and may you navigate the mineDOM safely!
               </p>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer d-flex justify-content-between">
+              <img src="./img/gaming-logo.png" alt="mineDOM" />
               <button
                 type="button"
-                class="btn btn-secondary"
+                class="btn btn-warning"
                 data-bs-dismiss="modal"
               >
                 Got it!
@@ -241,13 +238,15 @@ La partita termina quando il giocatore clicca su una bomba o quando raggiunge il
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title">💣💣💣💣💣💣💣💣💣💣💣💣💣💣💣💣</h5>
-              <button
+              <div>
+                <button
                 id="modal-button-lose"
                 type="button"
                 class="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
+              </div>
             </div>
             <div class="modal-body d-flex justify-content-center flex-column">
               <img src="./img/explosion.gif" alt="explosion" />
@@ -292,9 +291,3 @@ La partita termina quando il giocatore clicca su una bomba o quando raggiunge il
     <script type="text/javascript" src="./js/main.js"></script>
   </body>
 </html>
-
-<!-- <p>
-  
-</p>
-
- -->

@@ -17,15 +17,12 @@
 }
 
 /* HEADER */
-header {
-  height: 8vh;
-  background-color: #75f336;
-  border: 1px solid red;
-}
 
 #complexity {
   margin-left: 10px;
   width: 100px;
+  background-color: var(--background);
+  border: none;
 }
 
 .custom-btn {
@@ -46,8 +43,6 @@ main {
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
-  /* mix-blend-mode: color-dodge; */
-  /* border: 1px solid black; */
   margin: auto;
 }
 
@@ -56,8 +51,6 @@ main {
   height: calc(100% / 10);
   background-color: rgb(157, 217, 67);
   border: 1px solid black;
-  /* color: #fff; */
-  /* border: 1px solid blueviolet; */
 }
 
 .box-medium {
@@ -65,16 +58,12 @@ main {
   height: calc(100% / 9);
   background-color: gold;
   border: 1px solid black;
-  /* color: #fff; */
-  /* border: 1px solid goldenrod; */
 }
 .box-hard {
   width: calc(100% / 7);
   height: calc(100% / 7);
   background-color: rgb(195, 68, 68);
   border: 1px solid black;
-  /* color: #eee; */
-  /* border: 1px solid gray; */
 }
 
 .hidden {
@@ -95,8 +84,10 @@ main {
   width: 50px;
   margin-left: auto;
   margin-right: 20px;
-  font-size: 13px;
+  font-size: 12px;
+  border-radius: 5%;
   background-color: var(--background);
+  border: none;
 }
 
 /* INSTRUCTIONS */
@@ -106,13 +97,24 @@ main {
   text-align: left;
 }
 
-/* CUSTOM SIDE BAR */
+/* CUSTOM MODAL INSTRUCTIONS */
 
-html,
-body {
-  margin: 0;
-  background: var(--background);
+.my-custom-modal,
+.modal-header,
+.modal-body,
+.modal-footer {
+  background-color: var(--navbar-dark-primary);
+  color: #eee;
 }
+.modal-body > h4,
+strong {
+  color: var(--background);
+}
+
+.btn-close {
+  background-color: var(--background);
+}
+/* CUSTOM SIDE BAR */
 
 #nav-toggle:checked ~ #nav-header {
   width: calc(var(--navbar-width-min) - 16px);
@@ -146,11 +148,11 @@ body {
 #nav-toggle:checked ~ #nav-content .nav-button .fas {
   min-width: calc(100% - 16px);
 }
-#nav-toggle:checked ~ #nav-footer #nav-footer-avatar {
+/* #nav-toggle:checked ~ #nav-footer #nav-footer-avatar {
   margin-left: 0;
   left: 50%;
   transform: translate(-50%);
-}
+} */
 #nav-toggle:checked ~ #nav-footer #nav-footer-titlebox,
 #nav-toggle:checked ~ #nav-footer label[for="nav-footer-toggle"] {
   opacity: 0;
@@ -180,10 +182,7 @@ body {
   border: none;
   border-top: solid 1px var(--navbar-dark-secondary);
 }
-#nav-bar a {
-  color: inherit;
-  text-decoration: inherit;
-}
+
 #nav-bar input[type="checkbox"] {
   display: none;
 }
