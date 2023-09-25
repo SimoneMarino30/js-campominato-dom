@@ -5,9 +5,16 @@
   box-sizing: border-box;
 }
 
-/* .container {
-  border: 1px solid red;
-} */
+/* PALETTE */
+:root {
+  --background: #fcc21f;
+  --navbar-width: 256px;
+  --navbar-width-min: 80px;
+  --navbar-dark-primary: #112338;
+  --navbar-dark-secondary: #2c3e50;
+  --navbar-light-primary: #f5f6fa;
+  --navbar-light-secondary: #8392a5;
+}
 
 /* HEADER */
 header {
@@ -22,7 +29,7 @@ header {
 }
 
 .custom-btn {
-  width: 70px;
+  max-width: 70px;
 }
 
 /* MAIN */
@@ -77,25 +84,29 @@ main {
 .outer-grid-border {
   border: 1px solid black;
 }
+
+/* LAUNCH IMG */
+.custom-btn {
+  max-width: 60px;
+}
+
 /* BTN INSTRUCTIONS */
 #btn-instructions {
   width: 50px;
   margin-left: auto;
   margin-right: 20px;
   font-size: 13px;
-  background-color: goldenrod;
+  background-color: var(--background);
+}
+
+/* INSTRUCTIONS */
+#more {
+  display: none;
+  font-size: 10px;
+  text-align: left;
 }
 
 /* CUSTOM SIDE BAR */
-:root {
-  --background: #fcc21f;
-  --navbar-width: 256px;
-  --navbar-width-min: 80px;
-  --navbar-dark-primary: #112338;
-  --navbar-dark-secondary: #2c3e50;
-  --navbar-light-primary: #f5f6fa;
-  --navbar-light-secondary: #8392a5;
-}
 
 html,
 body {
@@ -444,9 +455,10 @@ label[for="nav-footer-toggle"] {
   background-color: #d62929;
 }
 
-/* INSTRUCTIONS */
-#more {
-  display: none;
-  font-size: 10px;
-  text-align: left;
+/* HOVER ICONS ON SIDEBAR */
+.nav-button:nth-of-type(2):hover,
+.nav-button:nth-of-type(3):hover,
+.nav-button:nth-of-type(4):hover,
+.nav-button:nth-of-type(5):hover {
+  color: var(--background);
 }
