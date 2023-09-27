@@ -124,13 +124,15 @@ buttonEl.addEventListener("click", function () {
 // FUNCTIONS
 function changeBackground(singleSquare) {
   singleSquare.style.backgroundImage = "url(../img/grass.jpg)";
-  singleSquare.style.backgroundSize = "750px 750px";
+  singleSquare.style.backgroundSize = "1000px 1000px";
+  singleSquare.innerHTML = "🏵️";
 }
 
 function explode(singleSquare) {
   // coloro la casella della bomba di rosso e play audio bomba
   singleSquare.style.backgroundImage = "";
   singleSquare.style.backgroundColor = "red";
+  singleSquare.innerHTML = "💣";
   let audio = new Audio("audio/medium-explosion-40472.mp3");
   audio.play();
 }
@@ -195,8 +197,13 @@ var listAudio = [
   },
   {
     name: "Artist 3 - audio 3",
-    file: "https://file-examples.com/wp-content/uploads/2017/11/file_example_MP3_1MG.mp3",
-    duration: "00:27",
+    file: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+    duration: "06:12",
+  },
+  {
+    name: "Artist 4 - audio 4",
+    file: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3",
+    duration: "04:39",
   },
 ];
 
