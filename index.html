@@ -27,7 +27,6 @@ In seguito l'utente clicca su una cella: se il numero è presente nella lista de
 
 La partita termina quando il giocatore clicca su una bomba o quando raggiunge il numero massimo possibile di numeri consentiti (ovvero quando ha rivelato tutte le celle che non sono bombe) 
 -->
-
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -73,8 +72,12 @@ La partita termina quando il giocatore clicca su una bomba o quando raggiunge il
         <!-- style="border: 5px solid yellowgreen" -->
         <!-- LAUNCH BUTTON -->
         <div class="launch-button-container text-center">
-          <button id="button" class="launch-btn my-btn btn-secondary">
-            <img src="./img/launch-btn.avif" alt="launch" class="img-fluid" />
+          <button
+            id="button"
+            class="launch-btn my-btn btn-secondary"
+            type="button"
+          >
+            <span class="circle-red-btn">Launch</span>
           </button>
           <button
             id="reset"
@@ -84,33 +87,39 @@ La partita termina quando il giocatore clicca su una bomba o quando raggiunge il
           </button>
         </div>
         <!-- SIDEBAR ITEMS -->
-        <div class="nav-button">
-          <i class="fas fa-bomb"></i><span>Level</span>
-          <!-- SELECT -->
-          <select name="complexity" id="complexity">
-            <option value="100" class="easy">Easy</option>
-            <option value="81" class="medium">Medium</option>
-            <option value="49" class="hard">Hard</option>
-          </select>
+        <div class="nav-button mb-3">
+          <div>
+            <!-- select -->
+            <select name="complexity" id="complexity">
+              <option value="100" class="easy">💣 16 🚀 x 100 🟩</option>
+              <option value="81" class="medium">💣💣 16 🚀 x 81 🟨</option>
+              <option value="49" class="hard">💣💣💣 16 🚀 x 49 🟥</option>
+            </select>
+            <!-- title -->
+            <div>Level</div>
+            <!-- bombs icons -->
+            <div id="level-bombs"></div>
+          </div>
         </div>
         <hr />
-        <div id=" instructions" class="nav-button">
+        <!-- Button trigger modal instructions-->
+        <div class="nav-button">
           <button
-            id="btn-instructions"
-            class="fas"
+            class="nav-btn-opt fas"
             data-bs-toggle="modal"
             data-bs-target="#exampleModal"
           >
             <i class="fa-solid fa-gear"></i>
           </button>
-
-          <span>Instructions</span>
-          <!-- Button trigger modal -->
+          <span class="ms-5">Instructions</span>
         </div>
-        <!-- music -->
+        <!-- Music button-->
         <div class="nav-button">
-          <!-- <i class="fas fa-music"></i> -->
-          <div class="fas" id="toggleMute" onclick="toggleMute()">
+          <button
+            class="nav-btn-opt fas"
+            id="toggleMute"
+            onclick="toggleMute()"
+          >
             <div id="btn-faws-volume">
               <i id="icon-vol-up" class="fas fa-volume-up"></i>
               <i
@@ -119,8 +128,8 @@ La partita termina quando il giocatore clicca su una bomba o quando raggiunge il
                 style="display: none"
               ></i>
             </div>
-          </div>
-          <span>Music</span>
+          </button>
+          <span class="ms-5">Music</span>
           <!-- mute -->
 
           <!-- colorazione gialla sulle opzioni della sidebar -->
@@ -320,7 +329,7 @@ La partita termina quando il giocatore clicca su una bomba o quando raggiunge il
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">💣💣💣💣💣💣💣💣💣💣💣💣💣💣💣💣</h5>
+              <h5 class="modal-title">aia</h5>
               <div>
                 <button
                   id="modal-button-lose"
@@ -332,7 +341,6 @@ La partita termina quando il giocatore clicca su una bomba o quando raggiunge il
               </div>
             </div>
             <div class="modal-body d-flex justify-content-center flex-column">
-              <img src="./img/explosion.gif" alt="explosion" />
               <br />
               <p>Please, try again!</p>
             </div>
