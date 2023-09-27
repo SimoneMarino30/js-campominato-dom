@@ -10,7 +10,7 @@
 :root {
   --background: #fcc21f;
   --navbar-width: 256px;
-  --navbar-width-min: 100px;
+  --navbar-width-min: 9rem;
   --navbar-dark-primary: #112338;
   --navbar-dark-secondary: #2c3e50;
   --navbar-light-primary: #f5f6fa;
@@ -116,7 +116,7 @@ main {
 .modal-body,
 .modal-footer {
   background-color: var(--navbar-dark-primary);
-  color: #eee;
+  color: var(--navbar-light-secondary);
 }
 .modal-body > h4,
 strong {
@@ -363,7 +363,9 @@ label[for="nav-toggle"] {
   right: 0;
   outline: 0;
 }
-
+select {
+  font-size: 0.85rem;
+}
 #myWindow {
   z-index: 999;
 }

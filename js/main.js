@@ -25,20 +25,20 @@ let updatePunteggio = document.getElementById("counter");
 updatePunteggio.innerHTML = 0;
 
 // Level
-if (selectEl.value == 100) bombsLevel.innerHTML = "💣";
+if (selectEl.value == 100) bombsLevel.innerHTML = "easy";
 
-if (selectEl.value == 81) bombsLevel.innerHTML = "💣💣";
+if (selectEl.value == 81) bombsLevel.innerHTML = "medium";
 
-if (selectEl.value == 49) bombsLevel.innerHTML = "💣💣💣";
+if (selectEl.value == 49) bombsLevel.innerHTML = "hard";
 
 // EVENT LISTENER
 // Cambio value select in tempo reale
 selectEl.addEventListener("click", function () {
-  if (selectEl.value == 100) bombsLevel.innerHTML = "💣";
+  if (selectEl.value == 100) bombsLevel.innerHTML = "easy";
 
-  if (selectEl.value == 81) bombsLevel.innerHTML = "💣💣";
+  if (selectEl.value == 81) bombsLevel.innerHTML = "medium";
 
-  if (selectEl.value == 49) bombsLevel.innerHTML = "💣💣💣";
+  if (selectEl.value == 49) bombsLevel.innerHTML = "hard";
 });
 
 // al click genero i quadrati
