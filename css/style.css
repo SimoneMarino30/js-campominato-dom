@@ -21,7 +21,7 @@
 /* select */
 #complexity {
   max-width: 15rem;
-  background-color: var(--background);
+  background-color: var(--navbar-light-secondary);
   border: none;
   cursor: pointer;
 }
@@ -369,7 +369,7 @@ label[for="nav-toggle"] {
 }
 
 .drag-top {
-  background-color: var(--background);
+  background-color: var(--navbar-light-secondary);
 }
 /* CUSTOM MUSIC PLAYER */
 .dash-ctn {
