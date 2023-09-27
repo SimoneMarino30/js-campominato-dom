@@ -6,6 +6,7 @@
 const buttonEl = document.getElementById("button");
 // Prendo la select
 const selectEl = document.getElementById("complexity");
+const bombsLevel = document.getElementById("level-bombs");
 // Bombs
 const quantity = 16;
 // Array for unique numbers
@@ -22,7 +23,23 @@ const modalBtnWin = document.getElementById("modal-button-win");
 let punteggio = 0;
 let updatePunteggio = document.getElementById("counter");
 updatePunteggio.innerHTML = 0;
+
+// Level
+if (selectEl.value == 100) bombsLevel.innerHTML = "💣";
+
+if (selectEl.value == 81) bombsLevel.innerHTML = "💣💣";
+
+if (selectEl.value == 49) bombsLevel.innerHTML = "💣💣💣";
+
 // EVENT LISTENER
+// Cambio value select in tempo reale
+selectEl.addEventListener("click", function () {
+  if (selectEl.value == 100) bombsLevel.innerHTML = "💣";
+
+  if (selectEl.value == 81) bombsLevel.innerHTML = "💣💣";
+
+  if (selectEl.value == 49) bombsLevel.innerHTML = "💣💣💣";
+});
 
 // al click genero i quadrati
 buttonEl.addEventListener("click", function () {
@@ -37,9 +54,8 @@ buttonEl.addEventListener("click", function () {
   while (arrUniqueNumbers.length < quantity) {
     const randomNumber = Math.floor(Math.random() * selectEl.value) + 1;
 
-    if (!arrUniqueNumbers.includes(randomNumber)) {
+    if (!arrUniqueNumbers.includes(randomNumber))
       arrUniqueNumbers.push(randomNumber);
-    }
   }
 
   // Ordino i numeri in maniera crescente
@@ -52,15 +68,11 @@ buttonEl.addEventListener("click", function () {
   for (let i = 1; i <= selectEl.value; i++) {
     const square = document.createElement("button");
 
-    if (selectEl.value == 100) {
-      square.classList.add("box");
-    }
-    if (selectEl.value == 81) {
-      square.classList.add("box-medium");
-    }
-    if (selectEl.value == 49) {
-      square.classList.add("box-hard");
-    }
+    if (selectEl.value == 100) square.classList.add("box");
+
+    if (selectEl.value == 81) square.classList.add("box-medium");
+
+    if (selectEl.value == 49) square.classList.add("box-hard");
 
     // Ogni cella ha un numero progressivo, da 1 a 100.
     square.innerHTML = i;
@@ -90,9 +102,8 @@ buttonEl.addEventListener("click", function () {
       // Ciclo per far uscire la modal se il punteggio è uguale ad un numero dell' array di bombe --> sconfitta!
       for (let x = 0; x < arrUniqueNumbers.length; x++) {
         if (i == arrUniqueNumbers[x]) {
-          // sed perdo il punteggio non conteggia la cela con la bomba
+          // se perdo il punteggio non conteggia la cela con la bomba
           punteggio -= 1;
-
           // score board
           updatePunteggio.innerHTML = punteggio;
           explode(square);
