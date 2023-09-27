@@ -20,7 +20,8 @@ const modalBtnWin = document.getElementById("modal-button-win");
 
 // Punteggio
 let punteggio = 0;
-
+let updatePunteggio = document.getElementById("counter");
+updatePunteggio.innerHTML = 0;
 // EVENT LISTENER
 
 // al click genero i quadrati
@@ -68,25 +69,34 @@ buttonEl.addEventListener("click", function () {
     // Aggiungo un gestore di eventi al clic di ciascun quadrato
     square.addEventListener("click", function () {
       punteggio += 1;
-      // Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro
+
+      // score board
+      updatePunteggio.innerHTML = punteggio;
+
+      // Quando l'utente clicca su ogni cella, la cella cliccata si colora come il background
       changeBackground(square);
       // ed emetto un messaggio in console con il numero della cella cliccata
       console.log(i);
-
+      // se il punteggio è uguale alla lunghezza dell' array --> vittoria!
       if (punteggio == selectEl.value - arrUniqueNumbers.length) {
-        console.log(punteggio);
         // alert("Hai vinto");
-        gridEl.classList.add("d-none");
+        // gridEl.classList.add("d-none");
         modalWin.classList.remove("d-none");
         modalWin.classList.add("d-block");
       }
 
-      console.log(punteggio);
-      // Ciclo per colorare le caselle delle bombe di rosso (sconfitta)
+      console.log("score = " + punteggio);
+
+      // Ciclo per far uscire la modal se il punteggio è uguale ad un numero dell' array di bombe --> sconfitta!
       for (let x = 0; x < arrUniqueNumbers.length; x++) {
         if (i == arrUniqueNumbers[x]) {
+          // sed perdo il punteggio non conteggia la cela con la bomba
+          punteggio -= 1;
+
+          // score board
+          updatePunteggio.innerHTML = punteggio;
           explode(square);
-          gridEl.classList.add("d-none");
+          // gridEl.classList.add("d-none");
           modalLose.classList.remove("d-none");
           modalLose.classList.add("d-block");
           // alert("Hai perso, che scaaaaarso ahahahahaha");
@@ -94,7 +104,7 @@ buttonEl.addEventListener("click", function () {
       }
     });
   }
-
+  // reload pagina
   resetEl.addEventListener("click", function () {
     window.location.reload();
   });
@@ -106,8 +116,10 @@ function changeBackground(singleSquare) {
   singleSquare.style.backgroundSize = "750px 750px";
 }
 
-function explode(bomb) {
-  bomb.style.backgroundColor = "red";
+function explode(singleSquare) {
+  // coloro la casella della bomba di rosso e play audio bomba
+  singleSquare.style.backgroundImage = "";
+  singleSquare.style.backgroundColor = "red";
   let audio = new Audio("audio/medium-explosion-40472.mp3");
   audio.play();
 }
@@ -124,7 +136,11 @@ modalBtnWin.addEventListener("click", function () {
   window.location.reload();
 });
 
-// AUDIO PLAYER
+/*******
+ *
+ * AUDIO PLAYER
+ *
+ *******/
 function createTrackItem(index, name, duration) {
   var trackItem = document.createElement("div");
   trackItem.setAttribute("class", "playlist-track-ctn");
@@ -355,6 +371,49 @@ function toggleMute() {
     volUp.style.display = "block";
   }
 }
-// // Audio dashboard column
-// const vertical = document.getElementById("vertical-audio");
-// const audioContainer = document.getElementById("dashboard-audio");
+// DRAGGABLE WINDOW
+function makeDraggable(elmnt) {
+  // Make an element draggable
+  let currentPosX = 0,
+    currentPosY = 0,
+    previousPosX = 0,
+    previousPosY = 0;
+
+  // Otherwise, move the element itself
+  elmnt.onmousedown = dragMouseDown;
+
+  function dragMouseDown(e) {
+    // Prevent any default action on this element (you can remove if you need this element to perform its default action)
+    e.preventDefault();
+    // Get the mouse cursor position and set the initial previous positions to begin
+    previousPosX = e.clientX;
+    previousPosY = e.clientY;
+    // When the mouse is let go, call the closing event
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    // Prevent any default action on this element (you can remove if you need this element to perform its default action)
+    e.preventDefault();
+    // Calculate the new cursor position by using the previous x and y positions of the mouse
+    currentPosX = previousPosX - e.clientX;
+    currentPosY = previousPosY - e.clientY;
+    // Replace the previous positions with the new x and y positions of the mouse
+    previousPosX = e.clientX;
+    previousPosY = e.clientY;
+    // Set the element's new position
+    elmnt.style.top = elmnt.offsetTop - currentPosY + "px";
+    elmnt.style.left = elmnt.offsetLeft - currentPosX + "px";
+  }
+
+  function closeDragElement() {
+    // Stop moving when mouse button is released and release events
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
+
+// Drag myWindow
+makeDraggable(document.querySelector("#myWindow"));
