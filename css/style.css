@@ -3,7 +3,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Games", sans-serif;
+  /* font-family: "Games", sans-serif; */
+  font-family: "Bold Comic", sans-serif;
 }
 
 /* PALETTE */
@@ -81,23 +82,23 @@ main {
   margin: auto;
 }
 
-.box {
+.box-hard {
   width: calc(100% / 10);
   height: calc(100% / 10);
-  background-color: rgb(157, 217, 67);
+  background-color: #b84114;
   border: 1px solid black;
 }
 
 .box-medium {
   width: calc(100% / 9);
   height: calc(100% / 9);
-  background-color: gold;
+  background-color: #ffff15;
   border: 1px solid black;
 }
-.box-hard {
+.box-easy {
   width: calc(100% / 7);
   height: calc(100% / 7);
-  background-color: rgb(195, 68, 68);
+  background-color: #00ff00;
   border: 1px solid black;
 }
 
