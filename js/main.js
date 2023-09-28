@@ -27,27 +27,49 @@ updatePunteggio.innerHTML = 0;
 // * 1UP vite
 const livesID = document.getElementById("life");
 const lives = document.createElement("div");
+
 let life = 0;
-let arrayEasyLife = ["🚀", "🚀", "🚀", "🚀", "🚀", "🚀", "🚀", "🚀", "🚀"];
-let arrayMediumLife = ["🚀", "🚀", "🚀", "🚀", "🚀", "🚀", "🚀", "🚀"];
-let arrayHardLife = ["🚀", "🚀", "🚀", "🚀"];
 
-// Level
-if (selectEl.value == 100) bombsLevel.innerHTML = "easy";
+let arrayEasyLife = [
+  "🚀",
+  "🚀",
+  "🚀",
+  "🚀",
+  "🚀",
+  "🚀",
+  "🚀",
+  "🚀",
+  "🚀",
+  "🚀",
+  "🚀",
+  "🚀",
+  "🚀",
+  "🚀",
+  "🚀",
+  "🚀",
+];
+let arrayMediumLife = [
+  "🚀",
+  "🚀",
+  "🚀",
+  "🚀",
+  "🚀",
+  "🚀",
+  "🚀",
+  "🚀",
+  "🚀",
+  "🚀",
+];
+let arrayHardLife = ["🚀", "🚀", "🚀", "🚀", "🚀"];
 
-if (selectEl.value == 81) bombsLevel.innerHTML = "medium";
-
-if (selectEl.value == 49) bombsLevel.innerHTML = "hard";
+// Level all' apertura della pagina
+// level();
 
 // EVENT LISTENER
 // Cambio value select in tempo reale
-selectEl.addEventListener("click", function () {
-  if (selectEl.value == 100) bombsLevel.innerHTML = "easy";
-
-  if (selectEl.value == 81) bombsLevel.innerHTML = "medium";
-
-  if (selectEl.value == 49) bombsLevel.innerHTML = "hard";
-});
+// selectEl.addEventListener("click", function () {
+//   level();
+// });
 
 // al click genero i quadrati
 buttonEl.addEventListener("click", function () {
@@ -55,6 +77,7 @@ buttonEl.addEventListener("click", function () {
   buttonEl.classList.add("hidden");
   selectEl.classList.add("hidden");
   resetEl.classList.remove("hidden");
+  level();
 
   const gridEl = document.getElementById("grid");
   gridEl.classList.add("outer-grid-border");
@@ -76,11 +99,11 @@ buttonEl.addEventListener("click", function () {
   for (let i = 1; i <= selectEl.value; i++) {
     const square = document.createElement("button");
 
-    if (selectEl.value == 100) square.classList.add("box");
+    if (selectEl.value == 100) square.classList.add("box-hard");
 
     if (selectEl.value == 81) square.classList.add("box-medium");
 
-    if (selectEl.value == 49) square.classList.add("box-hard");
+    if (selectEl.value == 49) square.classList.add("box-easy");
 
     // Ogni cella ha un numero progressivo, da 1 a 100.
     square.innerHTML = i;
@@ -88,24 +111,8 @@ buttonEl.addEventListener("click", function () {
     const cellValue = i;
     // Aggiungo un gestore di eventi al clic di ciascun quadrato
     square.addEventListener("click", function () {
-      punteggio += 1;
-
-      // score board
-      updatePunteggio.innerHTML = punteggio;
-
       // Quando l'utente clicca su ogni cella, la cella cliccata si colora come il background se non e' una bomba
       changeBackground(square);
-      // emetto un messaggio in console con il numero della cella cliccata
-      console.log(cellValue);
-      // se il punteggio è uguale alla lunghezza dell' array --> vittoria!
-      if (punteggio == selectEl.value - arrUniqueNumbers.length) {
-        // gridEl.classList.add("d-none");
-        modalWin.classList.remove("d-none");
-        modalWin.classList.add("d-block");
-      }
-
-      console.log("score = " + punteggio);
-
       // Ciclo per far uscire la modal se il punteggio è uguale ad un numero dell' array di bombe --> sconfitta!
       for (let x = 0; x < arrUniqueNumbers.length; x++) {
         if (cellValue == arrUniqueNumbers[x]) {
@@ -114,26 +121,31 @@ buttonEl.addEventListener("click", function () {
           life += 1;
           countDownLives();
 
-          // score board
-          updatePunteggio.innerHTML = punteggio;
           explode(square);
-          if (selectEl.value == 100 && life == 9) {
-            // gridEl.classList.add("d-none");
+          if (selectEl.value == 100 && life == 5) {
             modalLose.classList.remove("d-none");
             modalLose.classList.add("d-block");
           }
-          if (selectEl.value == 81 && life == 8) {
-            // gridEl.classList.add("d-none");
+          if (selectEl.value == 81 && life == 10) {
             modalLose.classList.remove("d-none");
             modalLose.classList.add("d-block");
           }
-          if (selectEl.value == 49 && life == 4) {
-            // gridEl.classList.add("d-none");
+          if (selectEl.value == 49 && life == 16) {
             modalLose.classList.remove("d-none");
             modalLose.classList.add("d-block");
           }
         }
       }
+      // score board
+      punteggio += 1;
+      updatePunteggio.innerHTML = punteggio;
+
+      // if the score is as grid value - bombs quantity --> win!
+      if (punteggio == selectEl.value - quantity) {
+        modalWin.classList.remove("d-none");
+        modalWin.classList.add("d-block");
+      }
+      console.log("score = " + punteggio);
     });
   }
   // reload pagina
@@ -148,7 +160,6 @@ buttonEl.addEventListener("click", function () {
 function changeBackground(singleSquare) {
   singleSquare.style.backgroundImage = "url(../img/grass.jpg)";
   singleSquare.style.backgroundSize = "1000px 1000px";
-  singleSquare.innerHTML = "🏵️";
 }
 
 function explode(singleSquare) {
@@ -176,7 +187,7 @@ modalBtnWin.addEventListener("click", function () {
 
 function addLives() {
   if (selectEl.value == 100) {
-    lives.innerHTML = arrayEasyLife;
+    lives.innerHTML = arrayHardLife;
     livesID.appendChild(lives);
   }
   if (selectEl.value == 81) {
@@ -184,7 +195,7 @@ function addLives() {
     livesID.appendChild(lives);
   }
   if (selectEl.value == 49) {
-    lives.innerHTML = arrayHardLife;
+    lives.innerHTML = arrayEasyLife;
     livesID.appendChild(lives);
   }
 }
@@ -193,26 +204,28 @@ function addLives() {
 function countDownLives() {
   // Popping the last element from the array
   if (selectEl.value == 100) {
-    let poppedEasy = arrayEasyLife.shift();
-    console.log("easy Removed element: " + poppedEasy);
-    console.log("Remaining elements: " + arrayEasyLife);
+    arrayHardLife.shift();
     // aggiorno le vite i tempo reale
-    lives.innerHTML = arrayEasyLife;
+    lives.innerHTML = arrayHardLife;
   }
   if (selectEl.value == 81) {
-    let poppedMedium = arrayMediumLife.shift();
-    console.log("medium Removed element: " + poppedMedium);
-    console.log("Remaining elements: " + arrayMediumLife);
+    arrayMediumLife.shift();
     lives.innerHTML = arrayMediumLife;
   }
   if (selectEl.value == 49) {
-    let poppedHard = arrayHardLife.shift();
-    console.log("hard Removed element: " + poppedHard);
-    console.log("Remaining elements: " + arrayHardLife);
-    lives.innerHTML = arrayHardLife;
+    arrayEasyLife.shift();
+    lives.innerHTML = arrayEasyLife;
   }
 }
 
+// livello 💣💣💣 dinamico
+function level() {
+  if (selectEl.value == 100) bombsLevel.innerHTML = "💣💣💣";
+
+  if (selectEl.value == 81) bombsLevel.innerHTML = "💣💣";
+
+  if (selectEl.value == 49) bombsLevel.innerHTML = "💣";
+}
 /*******
  *
  * AUDIO PLAYER
