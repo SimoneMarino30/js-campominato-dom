@@ -79,7 +79,6 @@ main {
   background-size: contain;
   background-repeat: no-repeat;
   margin: auto;
-  /* border: 1px solid orange; */
 }
 
 .box {
@@ -326,7 +325,7 @@ label[for="nav-toggle"] {
 /* DRAGGABLE WINDOW */
 .window {
   position: fixed;
-  left: 1.25rem;
+  left: 1.5rem;
   bottom: 1.25rem;
   width: 15rem;
   height: 15rem;
@@ -334,24 +333,19 @@ label[for="nav-toggle"] {
   border: none;
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0, 0.3),
     -1px 1px 4px rgba(0, 0, 0, 0, 0.3);
-  /* background: #fff; */
 }
 
 .window-content {
-  /* background: var(--navbar-dark-secondary); */
   background-image: url(../img/explosion.gif);
   background-size: cover;
   background-repeat: no-repeat;
-  color: var(--navbar-light-secondary);
-
+  color: var(--navbar-dark-secondary);
   padding: 0.3rem;
 }
 
 .window-input {
   display: block;
-
   width: calc(100% - 12px);
-
   color: #fff;
   border: 4px solid #fff;
   border-bottom-right-radius: 5px;
@@ -372,26 +366,23 @@ select {
 
 .drag-top {
   background-color: var(--navbar-light-secondary);
+  display: flex;
+  justify-content: center;
 }
 /* CUSTOM MUSIC PLAYER */
 .dash-ctn {
   display: flex;
   justify-content: center;
-  /* max-width: 50px; */
-  /* border: 1px solid blue; */
 }
 
 .btn .action {
   cursor: pointer;
-  /* width: 2.3rem; */
   padding: 0.5rem;
   display: flex;
   justify-content: center;
-  /* padding-top: 2rem; */
 }
 
 #myProgress {
-  /* width: 95%; */
   background-color: var(--navbar-light-secondary);
   cursor: pointer;
   border-radius: 10px;
@@ -412,9 +403,6 @@ select {
   justify-content: space-between;
 }
 
-.score-counter p {
-  /* border: 3px dashed blue; */
-}
 #counter {
   color: #333;
 }
