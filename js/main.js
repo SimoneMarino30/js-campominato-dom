@@ -24,17 +24,29 @@ let punteggio = 0;
 let updatePunteggio = document.getElementById("counter");
 updatePunteggio.innerHTML = 0;
 
+// * 1UP vite
+let life = 0;
+
 // Level
 if (selectEl.value == 100) bombsLevel.innerHTML = "easy";
 
 if (selectEl.value == 81) bombsLevel.innerHTML = "medium";
 
 if (selectEl.value == 49) bombsLevel.innerHTML = "hard";
+// FUNCTIONS VITE
 
+function addLives() {
+  const livesID = document.getElementById("life");
+  const lives = document.createElement("div");
+  lives.innerHTML = "🚀🚀🚀";
+  livesID.appendChild(lives);
+}
 // EVENT LISTENER
 // Cambio value select in tempo reale
 selectEl.addEventListener("click", function () {
-  if (selectEl.value == 100) bombsLevel.innerHTML = "easy";
+  if (selectEl.value == 100) {
+    bombsLevel.innerHTML = "easy";
+  }
 
   if (selectEl.value == 81) bombsLevel.innerHTML = "medium";
 
@@ -43,6 +55,7 @@ selectEl.addEventListener("click", function () {
 
 // al click genero i quadrati
 buttonEl.addEventListener("click", function () {
+  addLives();
   buttonEl.classList.add("hidden");
   selectEl.classList.add("hidden");
   resetEl.classList.remove("hidden");
@@ -62,7 +75,6 @@ buttonEl.addEventListener("click", function () {
   arrUniqueNumbers.sort(function (a, b) {
     return a - b;
   });
-
   console.log(arrUniqueNumbers);
 
   for (let i = 1; i <= selectEl.value; i++) {
@@ -77,7 +89,7 @@ buttonEl.addEventListener("click", function () {
     // Ogni cella ha un numero progressivo, da 1 a 100.
     square.innerHTML = i;
     document.getElementById("grid").appendChild(square);
-
+    const cellValue = i;
     // Aggiungo un gestore di eventi al clic di ciascun quadrato
     square.addEventListener("click", function () {
       punteggio += 1;
@@ -85,13 +97,12 @@ buttonEl.addEventListener("click", function () {
       // score board
       updatePunteggio.innerHTML = punteggio;
 
-      // Quando l'utente clicca su ogni cella, la cella cliccata si colora come il background
+      // Quando l'utente clicca su ogni cella, la cella cliccata si colora come il background se non e' una bomba
       changeBackground(square);
-      // ed emetto un messaggio in console con il numero della cella cliccata
-      console.log(i);
+      // emetto un messaggio in console con il numero della cella cliccata
+      console.log(cellValue);
       // se il punteggio è uguale alla lunghezza dell' array --> vittoria!
       if (punteggio == selectEl.value - arrUniqueNumbers.length) {
-        // alert("Hai vinto");
         // gridEl.classList.add("d-none");
         modalWin.classList.remove("d-none");
         modalWin.classList.add("d-block");
@@ -101,16 +112,30 @@ buttonEl.addEventListener("click", function () {
 
       // Ciclo per far uscire la modal se il punteggio è uguale ad un numero dell' array di bombe --> sconfitta!
       for (let x = 0; x < arrUniqueNumbers.length; x++) {
-        if (i == arrUniqueNumbers[x]) {
-          // se perdo il punteggio non conteggia la cela con la bomba
+        if (cellValue == arrUniqueNumbers[x]) {
+          // se perdo il punteggio non conteggia la cella con la bomba
           punteggio -= 1;
+          life += 1;
+          console.log("life: " + life);
+          console.log(selectEl.value);
           // score board
           updatePunteggio.innerHTML = punteggio;
           explode(square);
-          // gridEl.classList.add("d-none");
-          modalLose.classList.remove("d-none");
-          modalLose.classList.add("d-block");
-          // alert("Hai perso, che scaaaaarso ahahahahaha");
+          if (selectEl.value == 100 && life == 10) {
+            // gridEl.classList.add("d-none");
+            modalLose.classList.remove("d-none");
+            modalLose.classList.add("d-block");
+          }
+          if (selectEl.value == 81 && life == 8) {
+            // gridEl.classList.add("d-none");
+            modalLose.classList.remove("d-none");
+            modalLose.classList.add("d-block");
+          }
+          if (selectEl.value == 49 && life == 4) {
+            // gridEl.classList.add("d-none");
+            modalLose.classList.remove("d-none");
+            modalLose.classList.add("d-block");
+          }
         }
       }
     });
@@ -186,24 +211,29 @@ function createTrackItem(index, name, duration) {
 
 var listAudio = [
   {
-    name: "Artist 1 - audio 1",
+    name: "Chill 1 - audio 1",
     file: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3",
     duration: "08:47",
   },
   {
-    name: "Artist 2 - audio 2",
+    name: "Chill 2 - audio 2",
     file: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3",
     duration: "05:53",
   },
   {
-    name: "Artist 3 - audio 3",
+    name: "Chill 3 - audio 3",
     file: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
     duration: "06:12",
   },
   {
-    name: "Artist 4 - audio 4",
+    name: "Chill 4 - audio 4",
     file: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3",
     duration: "04:39",
+  },
+  {
+    name: "Psyco 5 - audio 5",
+    file: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-16.mp3",
+    duration: "02:02",
   },
 ];
 
