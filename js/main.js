@@ -25,7 +25,12 @@ let updatePunteggio = document.getElementById("counter");
 updatePunteggio.innerHTML = 0;
 
 // * 1UP vite
+const livesID = document.getElementById("life");
+const lives = document.createElement("div");
 let life = 0;
+let arrayEasyLife = ["🚀", "🚀", "🚀", "🚀", "🚀", "🚀", "🚀", "🚀", "🚀"];
+let arrayMediumLife = ["🚀", "🚀", "🚀", "🚀", "🚀", "🚀", "🚀", "🚀"];
+let arrayHardLife = ["🚀", "🚀", "🚀", "🚀"];
 
 // Level
 if (selectEl.value == 100) bombsLevel.innerHTML = "easy";
@@ -33,20 +38,11 @@ if (selectEl.value == 100) bombsLevel.innerHTML = "easy";
 if (selectEl.value == 81) bombsLevel.innerHTML = "medium";
 
 if (selectEl.value == 49) bombsLevel.innerHTML = "hard";
-// FUNCTIONS VITE
 
-function addLives() {
-  const livesID = document.getElementById("life");
-  const lives = document.createElement("div");
-  lives.innerHTML = "🚀🚀🚀";
-  livesID.appendChild(lives);
-}
 // EVENT LISTENER
 // Cambio value select in tempo reale
 selectEl.addEventListener("click", function () {
-  if (selectEl.value == 100) {
-    bombsLevel.innerHTML = "easy";
-  }
+  if (selectEl.value == 100) bombsLevel.innerHTML = "easy";
 
   if (selectEl.value == 81) bombsLevel.innerHTML = "medium";
 
@@ -116,12 +112,12 @@ buttonEl.addEventListener("click", function () {
           // se perdo il punteggio non conteggia la cella con la bomba
           punteggio -= 1;
           life += 1;
-          console.log("life: " + life);
-          console.log(selectEl.value);
+          countDownLives();
+
           // score board
           updatePunteggio.innerHTML = punteggio;
           explode(square);
-          if (selectEl.value == 100 && life == 10) {
+          if (selectEl.value == 100 && life == 9) {
             // gridEl.classList.add("d-none");
             modalLose.classList.remove("d-none");
             modalLose.classList.add("d-block");
@@ -146,7 +142,9 @@ buttonEl.addEventListener("click", function () {
   });
 });
 
-// FUNCTIONS
+// * *****
+// ** FUNCTIONS
+// * *****
 function changeBackground(singleSquare) {
   singleSquare.style.backgroundImage = "url(../img/grass.jpg)";
   singleSquare.style.backgroundSize = "1000px 1000px";
@@ -173,6 +171,47 @@ modalBtnWin.addEventListener("click", function () {
   modalWin.classList.add("d-none");
   window.location.reload();
 });
+
+// fn add lives
+
+function addLives() {
+  if (selectEl.value == 100) {
+    lives.innerHTML = arrayEasyLife;
+    livesID.appendChild(lives);
+  }
+  if (selectEl.value == 81) {
+    lives.innerHTML = arrayMediumLife;
+    livesID.appendChild(lives);
+  }
+  if (selectEl.value == 49) {
+    lives.innerHTML = arrayHardLife;
+    livesID.appendChild(lives);
+  }
+}
+
+// fn remove lives
+function countDownLives() {
+  // Popping the last element from the array
+  if (selectEl.value == 100) {
+    let poppedEasy = arrayEasyLife.shift();
+    console.log("easy Removed element: " + poppedEasy);
+    console.log("Remaining elements: " + arrayEasyLife);
+    // aggiorno le vite i tempo reale
+    lives.innerHTML = arrayEasyLife;
+  }
+  if (selectEl.value == 81) {
+    let poppedMedium = arrayMediumLife.shift();
+    console.log("medium Removed element: " + poppedMedium);
+    console.log("Remaining elements: " + arrayMediumLife);
+    lives.innerHTML = arrayMediumLife;
+  }
+  if (selectEl.value == 49) {
+    let poppedHard = arrayHardLife.shift();
+    console.log("hard Removed element: " + poppedHard);
+    console.log("Remaining elements: " + arrayHardLife);
+    lives.innerHTML = arrayHardLife;
+  }
+}
 
 /*******
  *
@@ -419,6 +458,7 @@ function toggleMute() {
     volUp.style.display = "block";
   }
 }
+
 // DRAGGABLE WINDOW
 function makeDraggable(elmnt) {
   // Make an element draggable
