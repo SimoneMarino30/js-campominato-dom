@@ -89,14 +89,15 @@ La partita termina quando il giocatore clicca su una bomba o quando raggiunge il
         <!-- SIDEBAR ITEMS -->
         <div class="nav-button mb-3">
           <div>
-            <!-- select -->
-            <select name="complexity" id="complexity">
-              <option value="100">🚀 x 5 || score: 84</option>
-              <option value="81">🚀 x 10 || score: 65</option>
-              <option value="49">🚀 x 16 || score: 33</option>
-            </select>
             <!-- title -->
             <div>Challenge</div>
+            <!-- select -->
+            <select name="complexity" id="complexity">
+              <option value="49">💣</option>
+              <option value="81">💣💣</option>
+              <option value="100">💣💣💣</option>
+            </select>
+            
             <!-- bombs icons -->
             <div id="level-bombs"></div>
           </div>
@@ -209,8 +210,6 @@ La partita termina quando il giocatore clicca su una bomba o quando raggiunge il
         <!-- <input class="window-input" type="text" /> -->
       </div>
 
-      <!-- SCORE BOARD -->
-
       <!-- Modal Instructions by BootStrap-->
       <div
         class="modal fade"
@@ -222,93 +221,56 @@ La partita termina quando il giocatore clicca su una bomba o quando raggiunge il
         <div class="modal-dialog modal-dialog-scrollable">
           <div class="modal-content">
             <div class="modal-header my-custom-modal d-flex">
-              <h4 class="modal-title fs-5" id="modal-text">
+              <div class="modal-title fs-5" id="modal-text">
                 Welcome to
                 <img src="./img/gaming-logo.png" class="mb-3" alt="mineDOM" /></br>
 
                 a challenging and exciting game of strategy and luck! In
                 MineDOM, your mission is to clear a grid filled with hidden
                 mines while avoiding them. Let's get started!
-              </h4>
+              </div>
             </div>
             <div class="modal-body">
+              <h4>MineDom Game Instructions</h4>
+
               <h4>Objective:</h4>
               <ul>
-                <li>
-                  Your goal is to uncover all the safe cells on the grid without
-                  clicking on any of the hidden mines.
-                </li>
-                <li>
-                  The number of mines remains constant at 16, but the grid size
-                  varies based on the difficulty level.
+                <li>Your goal is to win the game by reaching the target score, which is the difference between the number of boxes in the selected difficulty level and 16, the total number of mines.
                 </li>
               </ul>
 
               <h4>Difficulty Levels:</h4>
-              <p>
-                Minefield offers three different difficulty levels, each with a
-                unique grid size:
-              </p>
+              <p>MineDOM offers three different difficulty levels, each with a unique grid size and starting lives:</p>
               <ol>
-                <li>
-                  <strong>Easy:</strong> A beginner-friendly option with a 10x10
-                  grid (100 cells) and 16 mines.
-                </li>
-                <li>
-                  <strong>Medium:</strong> A moderate challenge with a 9x9 grid
-                  (81 cells) and 16 mines.
-                </li>
-                <li>
-                  <strong>Hard:</strong> The ultimate test of skill, featuring a
-                  7x7 grid (49 cells) with 16 mines.
-                </li>
+                <li><strong>Easy:</strong> A beginner-friendly option with a 7x7 grid (49 boxes) and 16 starting lives.</li>
+                <li><strong>Medium:</strong> A moderate challenge with a 9x9 grid (81 boxes) and 10 starting lives.</li>
+                <li><strong>Hard:</strong> The ultimate test of skill, featuring a 10x10 grid (100 boxes) and 5 starting lives.</li>
               </ol>
 
               <h4>Gameplay:</h4>
               <ol>
-                <li>
-                  Choose your preferred difficulty level before starting the
-                  game.
-                </li>
-                <li>
-                  Click on a cell to reveal its content. If it's a mine, you
-                  lose the game.
-                </li>
-                <li>
-                  Continue clicking on cells until you've uncovered all safe
-                  cells or accidentally clicked on a mine.
-                </li>
+                <li>Choose your preferred difficulty level before starting the game.</li>
+                <li>Your objective is to uncover boxes to reach the target score before running out of lives.</li>
+                <li>Be cautious! Some boxes may contain mines, which will cost you a life.</li>
+                <li>Keep track of your remaining lives and your progress towards the target score.</li>
               </ol>
 
               <h4>Winning:</h4>
-              <p>
-                You win the game by successfully uncovering all the safe cells
-                without clicking on any mines.
-              </p>
+              <p>You win the game when you reach the target score before running out of lives. Congratulations!</p>
 
               <h4>Losing:</h4>
-              <p>
-                If you click on a mine, you lose the game. But don't worry; you
-                can always try again!
-              </p>
+              <p>You lose if you run out of lives before reaching the target score. But don't worry; you can always try again!</p>
 
               <h4>Tips:</h4>
               <ul>
-                <li>
-                  Use logic and deduction to make educated guesses about safe
-                  cells.
-                </li>
-                <li>
-                  Plan your moves carefully, especially in the harder difficulty
-                  levels.
-                </li>
+                <li>Plan your moves carefully to maximize your score while avoiding mines.</li>
+                <li>Use logic and deduction to minimize the risk of hitting a mine.</li>
+                <li>Consider your starting lives and the target score when choosing your difficulty level.</li>
               </ul>
 
-              <p>
-                Are you ready to test your skills and conquer the MineDOM?
-                Select your preferred difficulty level and start playing. Good
-                luck, and may you navigate the mineDOM safely!
-              </p>
+              <p>Are you ready to test your skills and conquer the MineDOM? Select your preferred difficulty level and start playing. Good luck, and may you reach the target score and emerge victorious!</p>
+
+
             </div>
             <div class="modal-footer d-flex justify-content-between">
               <img src="./img/gaming-logo.png" alt="mineDOM" />
