@@ -144,8 +144,8 @@ La partita termina quando il giocatore clicca su una bomba o quando raggiunge il
     </div>
     <!-- MAIN START -->
     <main>
-      <!-- DRAGGABLE WINDOW -->
-      <div id="myWindow" class="window">
+      <!-- DRAGGABLE WINDOW AUDIO -->
+      <div id="myWindowAudio" class="window">
         <div class="drag-top">Drag me around</div>
         <div class="window-content">
           <!-- AUDIO PLAYER -->
@@ -203,16 +203,41 @@ La partita termina quando il giocatore clicca su una bomba o quando raggiunge il
               <div class="duration">00:00</div>
             </div>
           </div>
-          <!-- SCORE COUNTER -->
-          <div class="score-counter fs-3">
-            <p>Score</p>
-            <p id="counter"></p>
-          </div>
-          <div id="life"></div>
         </div>
         <!-- TODO: IMPLEMENTARE BARRA RICERCA DA SITO? -->
         <!-- <input class="window-input" type="text" /> -->
       </div>
+
+      <!-- DRAGGABLE WINDOW SCORE-->
+      <div id="myWindowScore" class="window">
+        <div class="drag-top">
+          Move me
+          <i class="fa-solid fa-arrows-up-down-left-right ms-3"></i>
+        </div>
+        <div class="window-content-score">
+          <!-- SCORE & toWIN £ LIVES COUNTER -->
+          <!-- real time user score real time -->
+          <div class="score-counter fs-3">
+            <p>Score</p>
+            <p id="counter"></p>
+          </div>
+          <!-- real time score to win -->
+          <div class="to-win-counter fs-3">
+            <p>To win</p>
+            <p id="score-to-win"></p>
+          </div>
+          <div class="life-counter">
+            <!-- real time lives counter-->
+            <div id="life"></div>
+          </div>
+          
+        </div>
+        
+      </div>
+
+      <!-- *************************************************
+        MODALS
+      ****************************************************** -->
 
       <!-- Modal Instructions by BootStrap-->
       <div
@@ -339,7 +364,7 @@ La partita termina quando il giocatore clicca su una bomba o quando raggiunge il
       </div>
     </main>
     <!-- MAIN END -->
-
+    
     <!-- SCRIPT BOOTSTRAP -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"

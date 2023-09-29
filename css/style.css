@@ -178,9 +178,7 @@ label[for="nav-toggle"] {
 .nav-btn-opt {
   background-color: var(--navbar-light-secondary);
   color: var(--background);
-  /* width: 0.25rem; */
   position: relative;
-  /* min-width: 3.5rem; */
   /* border: 2px dashed fuchsia; */
 }
 
@@ -188,7 +186,6 @@ label[for="nav-toggle"] {
   width: 4rem;
   height: 1.5rem;
   line-height: 1.5rem;
-
   /* border: 2px dashed fuchsia; */
 }
 /* HOVER ICONS ON SIDEBAR */
@@ -265,6 +262,9 @@ label[for="nav-toggle"] {
   padding: 0.3rem;
 }
 
+.window-content-score {
+  background-color: var(--navbar-dark-secondary);
+}
 .window-input {
   display: block;
   width: calc(100% - 12px);
@@ -282,10 +282,16 @@ label[for="nav-toggle"] {
 select {
   font-size: 0.85rem;
 }
-#myWindow {
+/* POSITIONING #WINDOWS */
+#myWindowAudio {
   z-index: 999;
 }
 
+#myWindowScore {
+  top: 0;
+  left: 500px;
+}
+/* DRAG WINDOWS */
 .drag-top {
   background-color: var(--navbar-light-secondary);
   display: flex;
@@ -304,7 +310,7 @@ select {
   display: flex;
   justify-content: center;
 }
-
+/* progress bar */
 #myProgress {
   background-color: var(--navbar-light-secondary);
   cursor: pointer;
@@ -323,11 +329,23 @@ select {
 /* SCORE COUNTER */
 .score-counter {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 #counter {
   color: #333;
+}
+
+/* TO WIN COUNTER */
+.to-win-counter {
+  display: flex;
+  justify-content: space-around;
+}
+
+/* LIFE COUNTER */
+.life-counter {
+  display: flex;
+  justify-content: space-around;
 }
 
 /* MAIN */

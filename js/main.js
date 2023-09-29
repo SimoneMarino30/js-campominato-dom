@@ -18,11 +18,18 @@ const modalLose = document.getElementById("modal-lose");
 const modalWin = document.getElementById("modal-win");
 const modalBtnLose = document.getElementById("modal-button-lose");
 const modalBtnWin = document.getElementById("modal-button-win");
-
+// Score
+let score = selectEl.value - quantity;
+// init score copy
+const STARTING_SCORE = score;
 // Punteggio
 let punteggio = 0;
 let updatePunteggio = document.getElementById("counter");
-updatePunteggio.innerHTML = 0;
+updatePunteggio.innerHTML = punteggio;
+// toWin
+let toWin = document.getElementById("score-to-win");
+// let scoreToWin = scoreToWin();
+// toWin.innerHTML = scoreToWin;
 
 // * 1UP vite
 const livesID = document.getElementById("life");
@@ -62,14 +69,14 @@ let arrayMediumLife = [
 ];
 let arrayHardLife = ["🚀", "🚀", "🚀", "🚀", "🚀"];
 
-// Level all' apertura della pagina
-// level();
+// Score to win default status page
+scoreToWin();
 
 // EVENT LISTENER
-// Cambio value select in tempo reale
-// selectEl.addEventListener("click", function () {
-//   level();
-// });
+// Change score to win when selected difficulty
+selectEl.addEventListener("click", function () {
+  scoreToWin();
+});
 
 // al click genero i quadrati
 buttonEl.addEventListener("click", function () {
@@ -95,7 +102,7 @@ buttonEl.addEventListener("click", function () {
     return a - b;
   });
   console.log(arrUniqueNumbers);
-
+  // for Loop that sets grid's size multipling square
   for (let i = 1; i <= selectEl.value; i++) {
     const square = document.createElement("button");
 
@@ -105,23 +112,27 @@ buttonEl.addEventListener("click", function () {
 
     if (selectEl.value == 49) square.classList.add("box-easy");
 
-    // Ogni cella ha un numero progressivo, da 1 a 100.
+    // print progressiv number from 1 to 100 on each square
     square.innerHTML = i;
     document.getElementById("grid").appendChild(square);
     const cellValue = i;
-    // Aggiungo un gestore di eventi al clic di ciascun quadrato
+    // AddEventListener square cell
     square.addEventListener("click", function () {
-      // Quando l'utente clicca su ogni cella, la cella cliccata si colora come il background se non e' una bomba
+      // Change background grass if isn't a bomb
       changeBackground(square);
-      // Ciclo per far uscire la modal se il punteggio è uguale ad un numero dell' array di bombe --> sconfitta!
+
+      // Loop to check if is a bomb; if so,, background change to red and a sound and
       for (let x = 0; x < arrUniqueNumbers.length; x++) {
         if (cellValue == arrUniqueNumbers[x]) {
-          // se perdo il punteggio non conteggia la cella con la bomba
+          // punteggio & score don't increase
           punteggio -= 1;
+          score += 1;
           life += 1;
+          // Lives real time upgrade
           countDownLives();
-
+          // change background + bomb sound
           explode(square);
+          // modal lose pops up when life's up
           if (selectEl.value == 100 && life == 5) {
             modalLose.classList.remove("d-none");
             modalLose.classList.add("d-block");
@@ -136,16 +147,21 @@ buttonEl.addEventListener("click", function () {
           }
         }
       }
-      // score board
+
+      // score board updates
       punteggio += 1;
       updatePunteggio.innerHTML = punteggio;
+      // Score to win count down
+      score -= 1;
+      toWin.innerHTML = score;
 
-      // if the score is as grid value - bombs quantity --> win!
-      if (punteggio == selectEl.value - quantity) {
+      // if the score hits grid size - bombs quantity --> win!
+      if (punteggio == STARTING_SCORE && score == 0) {
         modalWin.classList.remove("d-none");
         modalWin.classList.add("d-block");
       }
       console.log("score = " + punteggio);
+      console.log("score = " + score);
     });
   }
   // reload pagina
@@ -218,7 +234,7 @@ function countDownLives() {
   }
 }
 
-// livello 💣💣💣 dinamico
+// dynamic level 💣💣💣
 function level() {
   if (selectEl.value == 100) bombsLevel.innerHTML = "💣💣💣";
 
@@ -226,6 +242,67 @@ function level() {
 
   if (selectEl.value == 49) bombsLevel.innerHTML = "💣";
 }
+
+// score to win
+function scoreToWin() {
+  if (selectEl.value == 100) toWin.innerHTML = selectEl.value - quantity;
+
+  if (selectEl.value == 81) toWin.innerHTML = selectEl.value - quantity;
+
+  if (selectEl.value == 49) toWin.innerHTML = selectEl.value - quantity;
+}
+
+// **********************
+// DRAGGABLE WINDOW
+// ***********************
+function makeDraggable(elmnt) {
+  // Make an element draggable
+  let currentPosX = 0,
+    currentPosY = 0,
+    previousPosX = 0,
+    previousPosY = 0;
+
+  // Otherwise, move the element itself
+  elmnt.onmousedown = dragMouseDown;
+
+  function dragMouseDown(e) {
+    // Prevent any default action on this element (you can remove if you need this element to perform its default action)
+    e.preventDefault();
+    // Get the mouse cursor position and set the initial previous positions to begin
+    previousPosX = e.clientX;
+    previousPosY = e.clientY;
+    // When the mouse is let go, call the closing event
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    // Prevent any default action on this element (you can remove if you need this element to perform its default action)
+    e.preventDefault();
+    // Calculate the new cursor position by using the previous x and y positions of the mouse
+    currentPosX = previousPosX - e.clientX;
+    currentPosY = previousPosY - e.clientY;
+    // Replace the previous positions with the new x and y positions of the mouse
+    previousPosX = e.clientX;
+    previousPosY = e.clientY;
+    // Set the element's new position
+    elmnt.style.top = elmnt.offsetTop - currentPosY + "px";
+    elmnt.style.left = elmnt.offsetLeft - currentPosX + "px";
+  }
+
+  function closeDragElement() {
+    // Stop moving when mouse button is released and release events
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
+
+// Drag myWindow
+makeDraggable(document.querySelector("#myWindowAudio"));
+// myWindowScore will be able to moved by grabbing the entire element
+makeDraggable(document.querySelector("#myWindowScore"));
+
 /*******
  *
  * AUDIO PLAYER
@@ -471,50 +548,3 @@ function toggleMute() {
     volUp.style.display = "block";
   }
 }
-
-// DRAGGABLE WINDOW
-function makeDraggable(elmnt) {
-  // Make an element draggable
-  let currentPosX = 0,
-    currentPosY = 0,
-    previousPosX = 0,
-    previousPosY = 0;
-
-  // Otherwise, move the element itself
-  elmnt.onmousedown = dragMouseDown;
-
-  function dragMouseDown(e) {
-    // Prevent any default action on this element (you can remove if you need this element to perform its default action)
-    e.preventDefault();
-    // Get the mouse cursor position and set the initial previous positions to begin
-    previousPosX = e.clientX;
-    previousPosY = e.clientY;
-    // When the mouse is let go, call the closing event
-    document.onmouseup = closeDragElement;
-    // call a function whenever the cursor moves
-    document.onmousemove = elementDrag;
-  }
-
-  function elementDrag(e) {
-    // Prevent any default action on this element (you can remove if you need this element to perform its default action)
-    e.preventDefault();
-    // Calculate the new cursor position by using the previous x and y positions of the mouse
-    currentPosX = previousPosX - e.clientX;
-    currentPosY = previousPosY - e.clientY;
-    // Replace the previous positions with the new x and y positions of the mouse
-    previousPosX = e.clientX;
-    previousPosY = e.clientY;
-    // Set the element's new position
-    elmnt.style.top = elmnt.offsetTop - currentPosY + "px";
-    elmnt.style.left = elmnt.offsetLeft - currentPosX + "px";
-  }
-
-  function closeDragElement() {
-    // Stop moving when mouse button is released and release events
-    document.onmouseup = null;
-    document.onmousemove = null;
-  }
-}
-
-// Drag myWindow
-makeDraggable(document.querySelector("#myWindow"));
