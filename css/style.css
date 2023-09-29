@@ -201,9 +201,9 @@ label[for="nav-toggle"] {
 
 /* SELECT */
 #complexity {
-  max-width: 15rem;
+  width: 6rem;
   background-color: var(--navbar-light-secondary);
-  border: none;
+  border: 1px solid var(--background);
   cursor: pointer;
 }
 
@@ -244,11 +244,11 @@ label[for="nav-toggle"] {
 /* DRAGGABLE WINDOW */
 .window {
   position: fixed;
-  left: 1.5rem;
-  bottom: 5rem;
-  width: 15rem;
+  left: 17.25rem;
+  top: 12rem;
+  width: 12rem;
   height: 15rem;
-  border-radius: 10px;
+  border-radius: 3rem;
   border: none;
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0, 0.3),
     -1px 1px 4px rgba(0, 0, 0, 0, 0.3);
@@ -279,17 +279,15 @@ label[for="nav-toggle"] {
   right: 0;
   outline: 0;
 }
-select {
-  font-size: 0.85rem;
-}
+
 /* POSITIONING #WINDOWS */
 #myWindowAudio {
   z-index: 999;
 }
 
 #myWindowScore {
-  top: 0;
-  left: 500px;
+  top: 1rem;
+  left: 17.25rem;
 }
 /* DRAG WINDOWS */
 .drag-top {
@@ -368,7 +366,7 @@ main {
 .box-hard {
   width: calc(100% / 10);
   height: calc(100% / 10);
-  background-color: #b84114;
+  background-color: #da4a16;
   border: 1px solid black;
 }
 
@@ -408,4 +406,11 @@ strong {
 
 .btn-close {
   background-color: var(--background);
+}
+
+/* button sidebar bootstrap override variables */
+#btn-padding-gear,
+#btn-padding-music {
+  --bs-btn-padding-x: 0.125rem;
+  --bs-btn-padding-y: 0.125rem;
 }
