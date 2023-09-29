@@ -28,9 +28,6 @@ let updatePunteggio = document.getElementById("counter");
 updatePunteggio.innerHTML = punteggio;
 // toWin
 let toWin = document.getElementById("score-to-win");
-// let scoreToWin = scoreToWin();
-// toWin.innerHTML = scoreToWin;
-
 // * 1UP vite
 const livesID = document.getElementById("life");
 const lives = document.createElement("div");
@@ -69,6 +66,10 @@ let arrayMediumLife = [
 ];
 let arrayHardLife = ["🚀", "🚀", "🚀", "🚀", "🚀"];
 
+// Array from 1 to 100
+const array1to100 = Array.from({ length: 100 }, (_, index) => index + 1);
+console.log(array1to100);
+
 // Score to win default status page
 scoreToWin();
 
@@ -101,6 +102,13 @@ buttonEl.addEventListener("click", function () {
   arrUniqueNumbers.sort(function (a, b) {
     return a - b;
   });
+
+  const arrayFilteredBombs = array1to100.filter(
+    (num) => !arrUniqueNumbers.includes(num)
+  );
+
+  console.log(arrayFilteredBombs);
+  console.log("------");
   console.log(arrUniqueNumbers);
   // for Loop that sets grid's size multipling square
   for (let i = 1; i <= selectEl.value; i++) {
@@ -121,7 +129,7 @@ buttonEl.addEventListener("click", function () {
       // Change background grass if isn't a bomb
       changeBackground(square);
 
-      // Loop to check if is a bomb; if so,, background change to red and a sound and
+      // * Loop to check if it's a bomb or not
       for (let x = 0; x < arrUniqueNumbers.length; x++) {
         if (cellValue == arrUniqueNumbers[x]) {
           // punteggio & score don't increase
@@ -160,10 +168,21 @@ buttonEl.addEventListener("click", function () {
         modalWin.classList.remove("d-none");
         modalWin.classList.add("d-block");
       }
-      console.log("score = " + punteggio);
-      console.log("score = " + score);
+      // disable cliked bomb cell
+      for (let z = 0; z < arrUniqueNumbers.length; z++) {
+        if (cellValue == arrUniqueNumbers[z]) {
+          square.disabled = true;
+        }
+      }
+      // disable cliked clear cell
+      for (let y = 0; y < arrayFilteredBombs.length; y++) {
+        if (cellValue == arrayFilteredBombs[y]) {
+          square.disabled = true;
+        }
+      }
     });
   }
+
   // reload pagina
   resetEl.addEventListener("click", function () {
     window.location.reload();
