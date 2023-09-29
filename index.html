@@ -51,8 +51,11 @@ La partita termina quando il giocatore clicca su una bomba o quando raggiunge il
     />
 
     <!-- FONT -->
+    <!-- Games -->
     <!-- <link href="https://fonts.cdnfonts.com/css/games" rel="stylesheet" /> -->
+    <!-- Comic -->
     <link href="https://fonts.cdnfonts.com/css/comic-2" rel="stylesheet">
+    
     <!-- CSS LINK -->
     <link rel="stylesheet" href="./css/style.css" />
 
@@ -68,8 +71,8 @@ La partita termina quando il giocatore clicca su una bomba o quando raggiunge il
         <label for="nav-toggle"><span id="nav-toggle-burger"></span></label>
         <hr />
       </div>
+      <!-- #NAV CONTENT -->
       <div id="nav-content">
-        <!-- style="border: 5px solid yellowgreen" -->
         <!-- LAUNCH BUTTON -->
         <div class="launch-button-container text-center">
           <button
@@ -82,59 +85,60 @@ La partita termina quando il giocatore clicca su una bomba o quando raggiunge il
           <button
             id="reset"
             class="btn btn-warning my-btn btn-secondary hidden"
+            type="button"
           >
             Reset
           </button>
         </div>
-        <!-- SIDEBAR ITEMS -->
+
+        <!-- SIDEBAR -->
+        <!-- select  -->
         <div class="nav-button mb-3">
           <div>
-            <!-- title -->
-            <div>Challenge</div>
-            <!-- select -->
+            <!-- title & select -->
+            <div>Difficulty</div>
             <select name="complexity" id="complexity">
               <option value="49">💣</option>
               <option value="81">💣💣</option>
               <option value="100">💣💣💣</option>
             </select>
-            
             <!-- bombs icons -->
             <div id="level-bombs"></div>
           </div>
         </div>
-        <hr />
-        <!-- Button trigger modal instructions-->
+        <!-- end select -->
+
+        <!-- Button instructions-->
         <div class="nav-button">
           <button
-            class="nav-btn-opt fas"
+            class="nav-btn-opt btn btn-warning"
             data-bs-toggle="modal"
             data-bs-target="#exampleModal"
           >
             <i class="fa-solid fa-gear"></i>
           </button>
-          <span class="ms-5">Instructions</span>
+          <span class="ms-4">Instructions</span>
         </div>
-        <!-- Music button-->
+        <!-- end instructions -->
+
+        <!-- Mute button-->
         <div class="nav-button">
           <button
-            class="nav-btn-opt fas"
+            class="nav-btn-opt btn btn-warning"
             id="toggleMute"
             onclick="toggleMute()"
           >
             <div id="btn-faws-volume">
-              <i id="icon-vol-up" class="fas fa-volume-up"></i>
+              <i id="icon-vol-up" class="fa-solid fa-volume-up"></i>
               <i
                 id="icon-vol-mute"
-                class="fas fa-volume-mute"
+                class="fa-solid fa-volume-mute"
                 style="display: none"
               ></i>
             </div>
           </button>
-          <span class="ms-5">Music</span>
+          <span class="ms-4">Music <small>on/off</small></span>
           <!-- mute -->
-
-          <!-- colorazione gialla sulle opzioni della sidebar -->
-          <!-- <div id="nav-content-highlight"></div> -->
         </div>
       </div>
     </div>
