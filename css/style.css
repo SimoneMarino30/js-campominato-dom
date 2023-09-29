@@ -19,115 +19,7 @@
 }
 
 /* SIDEBAR */
-/* select */
-#complexity {
-  max-width: 15rem;
-  background-color: var(--navbar-light-secondary);
-  border: none;
-  cursor: pointer;
-}
-
-/* launch container */
-.launch-button-container {
-  margin: 2.5rem auto 5rem auto;
-}
-
-/* launch button */
-.launch-btn {
-  width: 5.5rem;
-  height: 5.5rem;
-  background: repeating-linear-gradient(
-    -45deg,
-    #fcc21f,
-    #fcc21f 10px,
-    #333 10px,
-    #333 20px
-  );
-}
-
-/* red button launch */
-.circle-red-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: auto;
-  width: 65px;
-  height: 65px;
-  font-size: 1rem;
-  color: #fff;
-  border-radius: 50%;
-  background: -webkit-radial-gradient(100px 100px, circle, red, #ae0e0e);
-}
-
-.nav-btn-opt {
-  background-color: var(--navbar-light-secondary);
-  color: var(--background);
-  width: 0.25rem;
-  padding: 0.25rem 0 0.25rem 0;
-}
-/* MAIN */
-main {
-  min-height: 100vh;
-  background-image: url(../img/grass.jpg);
-  background-size: cover;
-}
-
-#grid {
-  height: 750px;
-  max-width: 750px;
-  background-image: url(../img/achtung-minen.png);
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-  margin: auto;
-}
-
-.box-hard {
-  width: calc(100% / 10);
-  height: calc(100% / 10);
-  background-color: #b84114;
-  border: 1px solid black;
-}
-
-.box-medium {
-  width: calc(100% / 9);
-  height: calc(100% / 9);
-  background-color: #ffff15;
-  border: 1px solid black;
-}
-.box-easy {
-  width: calc(100% / 7);
-  height: calc(100% / 7);
-  background-color: #00ff00;
-  border: 1px solid black;
-}
-
-.hidden {
-  display: none;
-}
-
-.outer-grid-border {
-  border: 1px solid black;
-}
-
-/* CUSTOM MODAL INSTRUCTIONS */
-.my-custom-modal,
-.modal-header,
-.modal-body,
-.modal-footer {
-  background-color: var(--navbar-dark-primary);
-  color: var(--navbar-light-secondary);
-}
-.modal-body > h4,
-strong {
-  color: var(--background);
-}
-
-.btn-close {
-  background-color: var(--background);
-}
-
-/* CUSTOM SIDE BAR */
+/* ANIMATION SIDE BAR */
 #nav-toggle:checked ~ #nav-header {
   width: calc(var(--navbar-width-min) - 16px);
 }
@@ -270,33 +162,6 @@ label[for="nav-toggle"] {
   height: 16px;
 }
 
-#nav-content-highlight {
-  position: absolute;
-  left: 16px;
-  top: -70px;
-  width: calc(100% - 16px);
-  height: 54px;
-  background: var(--background);
-  background-attachment: fixed;
-  border-radius: 16px 0 0 16px;
-  transition: top 0.2s;
-}
-#nav-content-highlight:before,
-#nav-content-highlight:after {
-  content: "";
-  position: absolute;
-  right: 0;
-  bottom: 100%;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  box-shadow: 16px 16px var(--background);
-}
-#nav-content-highlight:after {
-  top: 100%;
-  box-shadow: 16px -16px var(--background);
-}
-
 .nav-button {
   position: relative;
   margin-left: 16px;
@@ -307,13 +172,25 @@ label[for="nav-toggle"] {
   direction: ltr;
   z-index: 1;
   transition: color 0.2s;
+  /* border: 2px dashed firebrick; */
 }
 
-#nav-bar .fas {
-  min-width: 3rem;
-  text-align: center;
+.nav-btn-opt {
+  background-color: var(--navbar-light-secondary);
+  color: var(--background);
+  /* width: 0.25rem; */
+  position: relative;
+  /* min-width: 3.5rem; */
+  /* border: 2px dashed fuchsia; */
 }
 
+.nav-btn-opt .fa-solid {
+  width: 4rem;
+  height: 1.5rem;
+  line-height: 1.5rem;
+
+  /* border: 2px dashed fuchsia; */
+}
 /* HOVER ICONS ON SIDEBAR */
 .nav-button:nth-of-type(1):hover,
 .nav-button:nth-of-type(2):hover,
@@ -323,11 +200,55 @@ label[for="nav-toggle"] {
   color: var(--background);
 }
 
+/* SIDE BAR ITEMS select, btn, draggable*/
+
+/* SELECT */
+#complexity {
+  max-width: 15rem;
+  background-color: var(--navbar-light-secondary);
+  border: none;
+  cursor: pointer;
+}
+
+/* BTN */
+/* launch container */
+.launch-button-container {
+  margin: 1rem auto 2.5rem auto;
+  /* border: 3px dashed orange; */
+}
+
+/* launch button */
+.launch-btn {
+  width: 5.5rem;
+  height: 5.5rem;
+  background: repeating-linear-gradient(
+    -45deg,
+    #fcc21f,
+    #fcc21f 10px,
+    #333 10px,
+    #333 20px
+  );
+}
+
+/* red button launch */
+.circle-red-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  width: 65px;
+  height: 65px;
+  font-size: 1rem;
+  color: #fff;
+  border-radius: 50%;
+  background: -webkit-radial-gradient(100px 100px, circle, red, #ae0e0e);
+}
+
 /* DRAGGABLE WINDOW */
 .window {
   position: fixed;
   left: 1.5rem;
-  bottom: 1.25rem;
+  bottom: 5rem;
   width: 15rem;
   height: 15rem;
   border-radius: 10px;
@@ -370,6 +291,7 @@ select {
   display: flex;
   justify-content: center;
 }
+
 /* CUSTOM MUSIC PLAYER */
 .dash-ctn {
   display: flex;
@@ -406,4 +328,66 @@ select {
 
 #counter {
   color: #333;
+}
+
+/* MAIN */
+main {
+  min-height: 100vh;
+  background-image: url(../img/grass.jpg);
+  background-size: cover;
+}
+
+#grid {
+  height: 750px;
+  max-width: 750px;
+  background-image: url(../img/achtung-minen.png);
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin: auto;
+}
+
+.box-hard {
+  width: calc(100% / 10);
+  height: calc(100% / 10);
+  background-color: #b84114;
+  border: 1px solid black;
+}
+
+.box-medium {
+  width: calc(100% / 9);
+  height: calc(100% / 9);
+  background-color: #ffff15;
+  border: 1px solid black;
+}
+.box-easy {
+  width: calc(100% / 7);
+  height: calc(100% / 7);
+  background-color: #00ff00;
+  border: 1px solid black;
+}
+
+.hidden {
+  display: none;
+}
+
+.outer-grid-border {
+  border: 1px solid black;
+}
+
+/* CUSTOM MODAL INSTRUCTIONS */
+.my-custom-modal,
+.modal-header,
+.modal-body,
+.modal-footer {
+  background-color: var(--navbar-dark-primary);
+  color: var(--navbar-light-secondary);
+}
+.modal-body > h4,
+strong {
+  color: var(--background);
+}
+
+.btn-close {
+  background-color: var(--background);
 }
