@@ -111,6 +111,7 @@ La partita termina quando il giocatore clicca su una bomba o quando raggiunge il
         <!-- Button instructions-->
         <div class="nav-button">
           <button
+            id="btn-padding-gear"
             class="nav-btn-opt btn btn-warning"
             data-bs-toggle="modal"
             data-bs-target="#exampleModal"
@@ -124,6 +125,7 @@ La partita termina quando il giocatore clicca su una bomba o quando raggiunge il
         <!-- Mute button-->
         <div class="nav-button">
           <button
+          id="btn-padding-music"
             class="nav-btn-opt btn btn-warning"
             id="toggleMute"
             onclick="toggleMute()"
@@ -234,7 +236,10 @@ La partita termina quando il giocatore clicca su una bomba o quando raggiunge il
         </div>
         
       </div>
-
+      <!-- GRID -->
+      <div id="main-container" class="container pt-5">
+        <div id="grid"></div>
+      </div>
       <!-- *************************************************
         MODALS
       ****************************************************** -->
@@ -314,9 +319,7 @@ La partita termina quando il giocatore clicca su una bomba o quando raggiunge il
           </div>
         </div>
       </div>
-      <div id="main-container" class="container p-3">
-        <div id="grid"></div>
-      </div>
+      
       <!-- Modal lose -->
       <div id="modal-lose" class="modal" tabindex="-1">
         <div class="modal-dialog">
