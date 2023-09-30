@@ -193,63 +193,71 @@ buttonEl.addEventListener("click", function () {
 // ** FUNCTIONS
 // * *****
 function changeBackground(singleSquare) {
+  // clear cells
   singleSquare.style.backgroundImage = "url(../img/grass.jpg)";
   singleSquare.style.backgroundSize = "1000px 1000px";
 }
 
 function explode(singleSquare) {
-  // coloro la casella della bomba di rosso e play audio bomba
+  // background red and bomb's audio
   singleSquare.style.backgroundImage = "";
   singleSquare.style.backgroundColor = "red";
   singleSquare.innerHTML = "💣";
   let audio = new Audio("audio/medium-explosion-40472.mp3");
   audio.play();
 }
-
+// modal lose btn
 modalBtnLose.addEventListener("click", function () {
   modalLose.classList.remove("d-block");
   modalLose.classList.add("d-none");
   window.location.reload();
 });
-
+// modal win btn
 modalBtnWin.addEventListener("click", function () {
   modalWin.classList.remove("d-block");
   modalWin.classList.add("d-none");
   window.location.reload();
 });
 
-// fn add lives
-
+// print lives(🚀) whithout commas
 function addLives() {
   if (selectEl.value == 100) {
-    lives.innerHTML = arrayHardLife;
+    // avoind printing commas
+    let arrayString = arrayHardLife.join("");
+    lives.innerHTML = arrayString;
     livesID.appendChild(lives);
   }
   if (selectEl.value == 81) {
-    lives.innerHTML = arrayMediumLife;
+    let arrayString = arrayMediumLife.join("");
+    lives.innerHTML = arrayString;
     livesID.appendChild(lives);
   }
   if (selectEl.value == 49) {
-    lives.innerHTML = arrayEasyLife;
+    let arrayString = arrayEasyLife.join("");
+    lives.innerHTML = arrayString;
     livesID.appendChild(lives);
   }
 }
 
-// fn remove lives
+// remove lives real time withouth commas
 function countDownLives() {
-  // Popping the last element from the array
   if (selectEl.value == 100) {
+    // Popping the last element from the array
     arrayHardLife.shift();
-    // aggiorno le vite i tempo reale
-    lives.innerHTML = arrayHardLife;
+    // avoind printing commas
+    let arrayString = arrayHardLife.join("");
+    // update lives
+    lives.innerHTML = arrayString;
   }
   if (selectEl.value == 81) {
     arrayMediumLife.shift();
-    lives.innerHTML = arrayMediumLife;
+    let arrayString = arrayMediumLife.join("");
+    lives.innerHTML = arrayString;
   }
   if (selectEl.value == 49) {
     arrayEasyLife.shift();
-    lives.innerHTML = arrayEasyLife;
+    let arrayString = arrayEasyLife.join("");
+    lives.innerHTML = arrayString;
   }
 }
 

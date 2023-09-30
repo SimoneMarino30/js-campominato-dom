@@ -66,34 +66,33 @@ La partita termina quando il giocatore clicca su una bomba o quando raggiunge il
       <input id="nav-toggle" type="checkbox" />
       <div id="nav-header">
         <div id="nav-title">
-          <img src="./img/gaming-logo.png" alt="mineDOM" />
+          <!-- LAUNCH BUTTON -->
+          <div class="launch-button-container text-center">
+            <button
+              id="button"
+              class="launch-btn my-btn btn-secondary"
+              type="button"
+            >
+              <span class="circle-red-btn">Launch</span>
+            </button>
+            <button
+              id="reset"
+              class="btn btn-warning my-btn btn-secondary hidden"
+              type="button"
+            >
+              Reset
+            </button>
+          </div>
+          <!-- <img src="./img/gaming-logo.png" alt="mineDOM" /> -->
         </div>
-        <label for="nav-toggle"><span id="nav-toggle-burger"></span></label>
+        <!-- <label for="nav-toggle"><span id="nav-toggle-burger"></span></label> -->
         <hr />
       </div>
       <!-- #NAV CONTENT -->
       <div id="nav-content">
-        <!-- LAUNCH BUTTON -->
-        <div class="launch-button-container text-center">
-          <button
-            id="button"
-            class="launch-btn my-btn btn-secondary"
-            type="button"
-          >
-            <span class="circle-red-btn">Launch</span>
-          </button>
-          <button
-            id="reset"
-            class="btn btn-warning my-btn btn-secondary hidden"
-            type="button"
-          >
-            Reset
-          </button>
-        </div>
-
         <!-- SIDEBAR -->
         <!-- select  -->
-        <div class="nav-button mb-3">
+        <div class="nav-button mb-4">
           <div>
             <!-- title & select -->
             <div>Difficulty</div>
@@ -109,41 +108,67 @@ La partita termina quando il giocatore clicca su una bomba o quando raggiunge il
         <!-- end select -->
 
         <!-- Button instructions-->
-        <div class="nav-button">
-          <button
-            id="btn-padding-gear"
-            class="nav-btn-opt btn btn-warning"
-            data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
-          >
-            <i class="fa-solid fa-gear"></i>
-          </button>
-          <span class="ms-4">Instructions</span>
+        <div class="nav-button mb-4">
+          <div>
+            <div>Instructions</div>
+            <button
+              id="btn-padding-gear"
+              class="nav-btn-opt btn btn-warning"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+            >
+              <i class="fa-solid fa-gear"></i>
+            </button>
+          </div>
         </div>
         <!-- end instructions -->
 
         <!-- Mute button-->
-        <div class="nav-button">
-          <button
-            id="btn-padding-music"
-            class="nav-btn-opt btn btn-warning"
-            id="toggleMute"
-            onclick="toggleMute()"
-          >
-            <div id="btn-faws-volume">
-              <i id="icon-vol-up" class="fa-solid fa-volume-up"></i>
-              <i
-                id="icon-vol-mute"
-                class="fa-solid fa-volume-mute"
-                style="display: none"
-              ></i>
+        <div class="nav-button mb-4">
+          <div>
+            <div>Music <small>on/off</small></div>
+            <button
+              id="btn-padding-music"
+              class="nav-btn-opt btn btn-warning"
+              id="toggleMute"
+              onclick="toggleMute()"
+            >
+              <div id="btn-faws-volume">
+                <i id="icon-vol-up" class="fa-solid fa-volume-up"></i>
+                <i
+                  id="icon-vol-mute"
+                  class="fa-solid fa-volume-mute"
+                  style="display: none"
+                ></i>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- SCORE & toWIN & LIVES COUNTER -->
+      <div class="nav-button mb-2">
+        <div>
+          <div class="">Score</div>
+          <div class="d-flex justify-content-center">
+            <!-- real time user's score -->
+
+            <div class="score-counter fs-3">
+              <small id="counter" class="me-2"></small>
             </div>
-          </button>
-          <span class="ms-4">Music <small>on/off</small></span>
-          <!-- mute -->
+            <!-- real time score to win -->
+            <div class="to-win-counter fs-3">
+              <small>/</small>
+              <small id="score-to-win"></small>
+            </div>
+          </div>
+          <div class="life-counter">
+            <!-- real time lives counter-->
+            <div id="life"></div>
+          </div>
         </div>
       </div>
     </div>
+
     <!-- MAIN START -->
     <main>
       <!-- DRAGGABLE WINDOW AUDIO -->
@@ -212,32 +237,15 @@ La partita termina quando il giocatore clicca su una bomba o quando raggiunge il
         <!-- <input class="window-input" type="text" /> -->
       </div>
 
-      <!-- DRAGGABLE WINDOW SCORE-->
-      <div id="myWindowScore" class="window">
+      <!-- DRAGGABLE WINDOW 2 -->
+      <!-- <div id="myWindowScore" class="window">
         <div class="drag-top">
           Move me
           <i class="fa-solid fa-arrows-up-down-left-right ms-3"></i>
         </div>
-        <div class="window-content-score">
-          <!-- SCORE & toWIN £ LIVES COUNTER -->
-          <div class="d-flex justify-content-around">
-            <!-- real time user's score -->
-            <div class="score-counter fs-3">
-              <span>Score</span>
-              <span id="counter" class="ms-3"></span>
-            </div>
-            <!-- real time score to win -->
-            <div class="to-win-counter fs-3">
-              <span>/</span>
-              <span id="score-to-win"></span>
-            </div>
-          </div>
-          <div class="life-counter">
-            <!-- real time lives counter-->
-            <div id="life"></div>
-          </div>
-        </div>
-      </div>
+        <div class="window-content-score"></div>
+      </div> -->
+
       <!-- GRID -->
       <div id="main-container" class="container pt-5">
         <div id="grid"></div>
